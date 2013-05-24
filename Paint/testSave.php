@@ -11,7 +11,7 @@ if (isset($GLOBALS["HTTP_RAW_POST_DATA"]))
     //echo "unencodedData".$unencodedData;
     // Save file.  This example uses a hard coded filename for testing, 
     // but a real application can specify filename in POST variable
-    $fp = fopen( 'test.png', 'wb' );
+    $fp = fopen( 'Images/test.png', 'wb' );
     fwrite( $fp, $unencodedData);
     fclose( $fp );
 }
