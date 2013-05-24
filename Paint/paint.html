@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<!-- Note : in HTML5 the DOCTYPE can be memorized by a normal human being ! -->
+<!-- Common mistake : if we put a comment before the doctype element, Internet Explorer will not
+     consider the document as a HTML5 document and the canvas tag for example,
+     will not be displayed ! -->
+<html>
+<head>
+    <title>Paint</title>
+    <!-- note : in HTML5 no need to specify type=...-->
+    <link rel="stylesheet" href="css/paint.css"/>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/paint.js"></script>
+    <script src="js/drawingtools.js"></script>
+    <!-- add this if you are not running in Opera and want a color chooser -->
+    <script src="js/jscolor/jscolor.js"></script>
+    <script type="text/javascript">
+        // Run when the DOM is ready
+        $(document).ready(function () {
+            // Create the pseudo object which will handle the main canvas
+            paint = new PaintObject("canvasMain");
+            // Bind events to the canvas
+            paint.bindMultiplexEvents();
+        });
+    </script>
+</head>
+<body>
+<div id="home">
+    <div id="content">
+        <div id="divCanvas">
+            <canvas id="canvasMain">
+                <p>Canvas tag not supported by your browser</p>
+            </canvas>
+        </div>
+
+    </div>
+    <div id="righColumn">
+        <div id="drawCommands">
+            <script>
+                function saveCanvas()
+                {
+                    var img = document.getElementById("canvasMain").toDataURL("image/png");
+                    var ajax = new XMLHttpRequest();
+                    ajax.open("POST", 'testSave.php', false);
+                    ajax.setRequestHeader('Content-Type', 'application/upload');
+                    ajax.send(img);
+                };
+            </script>
+            <button type="button" id="save" onClick="saveCanvas()">
+                SAVE
+            </button>
+            <h6>Pick a tool</h6>
+            <span id="line">line</span>
+            <span id="pencil">pencil</span>
+            <span id="rectangle">rectangle</span>
+            <span id="circle">circle</span>
+            <ul>
+                <li>
+                    Fill color:
+                    <!-- if running opera you may try : <input id="fillColor" type="color" value="FFFFFF"/> -->
+                    <input id="fillColor" class="color" value="FFFFFF"/>
+                </li>
+                <li>
+                    Stroke color:
+                    <!--  if running opera you may try :<input id="strokeColor" type="color" value="FFFFFF"/> -->
+                    <input id="strokeColor" class="color" value="000000"/>
+                </li>
+                <li>
+                    <!-- works only in Chrome and Opera, will display a standard input text in Firefox -->
+                    Stroke size: <input id="strokeSize" type="range" min="0" max="20" value="1" step="0.5" style="position:relative;top:6px;"/>
+                </li>
+                <li>
+                    Fill shapes : <input id="fillShapes" type="checkbox" checked/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
