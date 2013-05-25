@@ -3,6 +3,10 @@ if (isset($GLOBALS["HTTP_RAW_POST_DATA"]))
 {
     // Get the data
     $imageData=$GLOBALS['HTTP_RAW_POST_DATA'];
+
+    // Get the path of the file to save to data image.
+    $filepath = substr($imageData, 0, strpos($imageData, "#"));
+
     // Remove the headers (data:,) part.  
     // A real application should use them according to needs such as to check image type
     $filteredData=substr($imageData, strpos($imageData, ",")+1);
@@ -11,7 +15,7 @@ if (isset($GLOBALS["HTTP_RAW_POST_DATA"]))
     //echo "unencodedData".$unencodedData;
     // Save file.  This example uses a hard coded filename for testing, 
     // but a real application can specify filename in POST variable
-    $fp = fopen( 'Images/test.png', 'wb' );
+    $fp = fopen( $filepath, 'wb');
     fwrite( $fp, $unencodedData);
     fclose( $fp );
 }
