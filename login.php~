@@ -28,11 +28,6 @@ if(!empty($errors)) {
 	$pass = $_POST['password'];
 	$query = "SELECT * FROM wa_users WHERE username = '$username' and pass = '$pass'";
 	$result = pg_query($conn, $query);
-	if($usertable = pg_fetch_array($result)) {
-		echo 'Login succesful';
-	} else {
-		echo 'Unsuccesful login';
-	}
 }
 
 } else {
