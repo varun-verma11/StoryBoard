@@ -70,5 +70,4 @@ if(!empty($errors)) {
 </form>
 <?php
 }
-include_once('footer.php');
 ?>

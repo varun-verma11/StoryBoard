@@ -28,6 +28,7 @@ if(isset( $_POST['submitted'] ) ) {
 		$query = "SELECT * FROM wa_users WHERE username = '$username' and pass = '$pass'";
 		$result = pg_query($conn, $query);
 		if($usertable = pg_fetch_array($result)) {
+			$logged_in = true;
 			echo 'Login succesful';
 			setcookie('username', $username);
 			setcookie('password', $pass);

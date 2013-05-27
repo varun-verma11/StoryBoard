@@ -7,7 +7,7 @@ include_once('functions.php');
 <?php
 if(has_cookies()) {
 	?>
-<li><a href="logout.php">Logout</a></li>
+<li>You are logged in</li>
 	<?php
 } else {
 ?>
