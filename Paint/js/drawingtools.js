@@ -36,8 +36,7 @@ setOfDrawingTools.line = function () {
         paint.started = true;
         previousMousePos = getMousePos(paint.getFrontCanvas(), event);
     };
-
-
+   
     this.mousemove = function (event) {
         var mousePos = getMousePos(paint.getFrontCanvas(), event);
         if (paint.started) {
@@ -124,4 +123,36 @@ setOfDrawingTools.circle = function() {
         paint.drawFrontCanvasOnMainCanvas();
         paint.started = false;
     }
+};
+
+setOfDrawingTools.text = function() {
+    var mousePos, x, y;
+    var size = 10;
+
+    this.mousedown = function(event) {
+        previousMousePos = getMousePos(paint.getFrontCanvas(), event);
+        paint.started = true;
+        x = previousMousePos.x;
+        y = previousMousePos.y;
+    }
+    
+    $(document.body).on('keydown', function(e) {
+        var canvas = document.getElementById("canvasMain");
+        var context = canvas.getContext("2d");
+        context.fillStyle = "black";
+        context.font = size+"px Arial";
+        context.fillText(String.fromCharCode(e.which), x, y);
+        x += size;
+        if (x+9>document.getElementById("canvasMain").width) {
+            y += size;
+            x = previousMousePos.x;
+        }
+    });
+
+    this.mousemove = function(event) { };
+
+    this.mouseup = function (event) {
+        paint.started = false;
+    }
+
 };
