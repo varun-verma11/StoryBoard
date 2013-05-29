@@ -35,13 +35,14 @@
             <script>
                 $(document).ready(function () {
                     // Configure to save every 5 seconds
-                    window.setInterval(saveCanvas("test"), 5000);
+                    window.setInterval(saveCanvas, 60000);
                 });
 
-                function saveCanvas(fp)
+                function saveCanvas()
                 {
                     var img = document.getElementById("canvasMain").toDataURL("image/png");
                     var ajax = new XMLHttpRequest();
+                    var fp = "test";
                     // var fp = prompt("Please enter the name of the file.");
                     img = "Images/" + fp + ".png#" + img;
                     ajax.open("POST", 'testSave.php', false);
@@ -49,7 +50,7 @@
                     ajax.send(img);
                 };
             </script>
-            <button type="button" id="save" onClick="saveCanvas('test')">
+            <button type="button" id="save" onClick="saveCanvas()">
                 SAVE
             </button>
             <h6>Pick a tool</h6>
