@@ -137,7 +137,7 @@ setOfDrawingTools.text = function() {
         var canvas = document.getElementById("canvasMain");
         var context = canvas.getContext("2d");
         context.fillStyle = "black";
-        context.font = "normal "+size+"px " + font;
+        context.font = size+"px " + font;
         context.fillText(text, previousMousePos.x, previousMousePos.y);
         // x = previousMousePos.x;
         // y = previousMousePos.y;
