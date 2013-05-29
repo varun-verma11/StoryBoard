@@ -126,28 +126,35 @@ setOfDrawingTools.circle = function() {
 };
 
 setOfDrawingTools.text = function() {
-    var mousePos, x, y;
-    var size = 10;
+    var mousePos, x, y, size, font;
 
     this.mousedown = function(event) {
         previousMousePos = getMousePos(paint.getFrontCanvas(), event);
         paint.started = true;
-        x = previousMousePos.x;
-        y = previousMousePos.y;
-    }
-    
-    $(document.body).on('keydown', function(e) {
+        size = document.getElementById("font_size").value;
+        font = document.getElementById("font").value;
+        var text = prompt("Please enter the text you want to add.");
         var canvas = document.getElementById("canvasMain");
         var context = canvas.getContext("2d");
         context.fillStyle = "black";
-        context.font = size+"px Arial";
-        context.fillText(String.fromCharCode(e.which), x, y);
-        x += size;
-        if (x+9>document.getElementById("canvasMain").width) {
-            y += size;
-            x = previousMousePos.x;
-        }
-    });
+        context.font = "normal "+size+"px " + font;
+        context.fillText(text, previousMousePos.x, previousMousePos.y);
+        // x = previousMousePos.x;
+        // y = previousMousePos.y;
+    }
+    
+    // $(document.body).on('keydown', function(e) {
+    //     var canvas = document.getElementById("canvasMain");
+    //     var context = canvas.getContext("2d");
+    //     context.fillStyle = "red";
+    //     context.font = "normal "+size+"px sans-serif";
+    //     context.fillText(String.fromCharCode(e.which), x, y);
+    //     x += (0.8*size);
+    //     if (x+9>document.getElementById("canvasMain").width) {
+    //         y += size;
+    //         x = previousMousePos.x;
+    //     }
+    // });
 
     this.mousemove = function(event) { };
 
