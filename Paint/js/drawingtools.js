@@ -163,3 +163,28 @@ setOfDrawingTools.text = function() {
     }
 
 };
+
+setOfDrawingTools.eraser = function() {
+    var mousePos, x, y, radius;
+
+    this.mousedown = function (event) {
+        previousMousePos = getMousePos(paint.getFrontCanvas(), event);
+        paint.started = true;
+    }
+
+     this.mousemove = function (event) {
+        mousePos = getMousePos(paint.getFrontCanvas(), event);
+        // Draw only if we clicked somewhere
+        if (paint.started) {
+            paint.getFrontContext().stroke();
+            
+
+        }
+    }
+
+    this.mouseup = function (event) {
+        paint.drawFrontCanvasOnMainCanvas();
+        paint.started = false;
+    }
+
+};
