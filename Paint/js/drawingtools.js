@@ -36,8 +36,7 @@ setOfDrawingTools.line = function () {
         paint.started = true;
         previousMousePos = getMousePos(paint.getFrontCanvas(), event);
     };
-
-
+   
     this.mousemove = function (event) {
         var mousePos = getMousePos(paint.getFrontCanvas(), event);
         if (paint.started) {
@@ -124,4 +123,68 @@ setOfDrawingTools.circle = function() {
         paint.drawFrontCanvasOnMainCanvas();
         paint.started = false;
     }
+};
+
+setOfDrawingTools.text = function() {
+    var mousePos, x, y, size, font;
+
+    this.mousedown = function(event) {
+        previousMousePos = getMousePos(paint.getFrontCanvas(), event);
+        paint.started = true;
+        size = document.getElementById("font_size").value;
+        font = document.getElementById("font").value;
+        var text = prompt("Please enter the text you want to add.");
+        var canvas = document.getElementById("canvasMain");
+        var context = canvas.getContext("2d");
+        context.fillStyle = "black";
+        context.font = size+"px " + font;
+        context.fillText(text, previousMousePos.x, previousMousePos.y);
+        // x = previousMousePos.x;
+        // y = previousMousePos.y;
+    }
+    
+    // $(document.body).on('keydown', function(e) {
+    //     var canvas = document.getElementById("canvasMain");
+    //     var context = canvas.getContext("2d");
+    //     context.fillStyle = "red";
+    //     context.font = "normal "+size+"px sans-serif";
+    //     context.fillText(String.fromCharCode(e.which), x, y);
+    //     x += (0.8*size);
+    //     if (x+9>document.getElementById("canvasMain").width) {
+    //         y += size;
+    //         x = previousMousePos.x;
+    //     }
+    // });
+
+    this.mousemove = function(event) { };
+
+    this.mouseup = function (event) {
+        paint.started = false;
+    }
+
+};
+
+setOfDrawingTools.eraser = function() {
+    var mousePos, x, y, radius;
+
+    this.mousedown = function (event) {
+        previousMousePos = getMousePos(paint.getFrontCanvas(), event);
+        paint.started = true;
+    }
+
+     this.mousemove = function (event) {
+        mousePos = getMousePos(paint.getFrontCanvas(), event);
+        // Draw only if we clicked somewhere
+        if (paint.started) {
+            paint.getFrontContext().stroke();
+            
+
+        }
+    }
+
+    this.mouseup = function (event) {
+        paint.drawFrontCanvasOnMainCanvas();
+        paint.started = false;
+    }
+
 };
