@@ -33,7 +33,6 @@ if(has_cookies()) {
 ?>
 </div> <!-- user div -->
 </div> <!-- header div -->
-<hr />
 <div id="content">
 
 <?php
