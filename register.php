@@ -68,10 +68,8 @@ if(!empty($errors)) {
 <input type="hidden" name="submitted" value="1" />
 <p><input type="submit" name="submit" value="register" class="button" /></p>
 </form>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+
+
 <?php
 }
 include_once('footer.php');

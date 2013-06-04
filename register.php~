@@ -1,0 +1,85 @@
+<?php include_once('header.php');
+if (isset($_POST['submitted']) ) {
+
+$errors = array();
+
+//Validating the e-mail:
+#$email = $_REQUEST['email'];
+if( empty($_POST['email']) )
+	$errors[] = "Email address not set";
+
+if( empty($_POST['username']) )
+	$errors[] = "Username not set";
+
+if( empty($_POST['password']) ) {
+
+	$errors[] = "Password not set";
+
+} else {
+
+	$pass1 = $_REQUEST['password'];
+	$pass2 = $_REQUEST['password_verify'];
+
+	if(strcmp($pass1, $pass2) != 0)
+	
+		$errors[] = "Passwords not matching";	
+
+}
+
+if(!empty($errors)) {
+
+	echo '<h1>Errors!</h1>';
+
+	echo '<ul>';
+	
+	foreach($errors as $error) {
+
+		echo '<li>' . $error . '</li>';
+
+	}
+
+	echo '</ul>';
+
+} else {
+
+	$email = $_POST['email'];
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	
+	$query = "INSERT INTO wa_users(username, email, pass) VALUES ('$username', '$email', '$password');";
+	//echo $query; 
+	$result = pg_query($conn, $query);
+	if(!$result) {
+		echo 'Unable to add user to database';
+	} else {
+		echo 'Registration succesful!';
+	}
+
+}
+	
+} else {
+?>
+<h1>Register</h1>
+<form action="register.php" method="post">
+<p>User name: <input type="text" name="username" size="20" maxlength="80" class="input" /> </p>
+<p>E-mail address: <input type="text" name="email" size="20" maxlength="80" class="input" /> </p>
+<p>Password: <input type="password" name="password" size="20" maxlength="20" class="input" /> </p>
+<p>Re-enter password: <input type="password" name="password_verify" size="20" maxlength="20" class="input" /> </p>
+<input type="hidden" name="submitted" value="1" />
+<p><input type="submit" name="submit" value="register" class="button" /></p>
+</form>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris accumsan nibh rutrum elit venenatis hendrerit tempor justo commodo. Aliquam id tellus tortor. Morbi a mi neque. Sed suscipit urna ac metus commodo vitae faucibus lorem congue. Nunc non metus nec erat porttitor aliquam. Suspendisse neque massa, auctor eget aliquam ut, tempus eu nisl. Integer a lacus nec enim mollis tristique ut vel nibh. Fusce nec massa vel enim venenatis dignissim quis eu eros. Phasellus sit amet lacinia erat. Praesent ornare urna quis erat congue vestibulum. Cras et leo sed libero hendrerit convallis quis at mauris.</p>
+
+<p>Donec et quam tortor, et vulputate nulla. Vestibulum egestas facilisis ultricies. Vestibulum mattis, arcu sit amet varius ornare, arcu nulla ullamcorper eros, eget scelerisque sapien tellus eget risus. In hac habitasse platea dictumst. Donec laoreet arcu sed elit aliquam tristique. Cras lacinia luctus tortor, ut vestibulum metus porttitor vitae. Donec non quam quis lorem fermentum tincidunt vitae in lectus. Suspendisse ultricies convallis odio, eu interdum lectus cursus nec. Aliquam erat volutpat. Integer dignissim aliquet leo, rutrum commodo lacus vestibulum sed. Cras dapibus magna in odio varius molestie fermentum velit posuere.</p>
+
+<p>Phasellus nec ante est. Pellentesque non felis a eros vestibulum eleifend. Morbi purus dolor, sagittis vel rhoncus ac, dignissim et neque. Integer tristique ultrices arcu ac iaculis. Morbi velit enim, pharetra quis cursus eget, ultrices sed eros. Phasellus placerat molestie eleifend. Donec pellentesque sem ac est volutpat ac laoreet erat tristique.</p>
+
+<p>Maecenas justo nisi, hendrerit non pretium et, sollicitudin nec lectus. Donec vitae nunc leo, quis tristique orci. Praesent a est ipsum. Proin congue justo vel est auctor consequat. Cras accumsan orci a lacus lacinia ut ornare nisi interdum. Sed ut nunc quam. Pellentesque ut fringilla tellus. Nunc viverra purus in arcu varius posuere.</p>
+
+<p>In hac habitasse platea dictumst. In at odio sit amet turpis ullamcorper volutpat. Suspendisse potenti. Fusce iaculis velit non dolor placerat sodales. Etiam sed magna massa, sed dapibus orci. In magna enim, gravida eu imperdiet sed, placerat vitae turpis. Morbi id libero sit amet leo aliquam tincidunt. Ut vel magna ac est facilisis gravida id vel lectus. Phasellus tincidunt pretium enim id bibendum. Fusce pharetra est fringilla lacus viverra vitae aliquam lacus ornare. Donec hendrerit dapibus quam, ut sagittis lacus faucibus ut. Proin congue euismod justo, non aliquet turpis adipiscing id. Pellentesque dapibus semper sapien et faucibus. Vivamus purus nibh, ornare in luctus vel, vulputate vitae mauris.</p>
+
+<?php
+}
+include_once('footer.php');
+?>

@@ -109,7 +109,3 @@ input {
 	width:990px;
 	display:block;
 }
-
-form {
-	margin:0 auto;
-}
