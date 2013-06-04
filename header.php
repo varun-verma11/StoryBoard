@@ -22,6 +22,7 @@ include_once('functions.php');
 	<li><a href="register.php">Register</a></li>
 	<?php } else { ?>
 	<li><a href="changepass.php">Change Password</a></li>
+	<li><a href="boards.php">Boards Panel</a></li>
 	<?php } ?>
 	</ul>
 </div>

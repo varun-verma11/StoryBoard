@@ -69,15 +69,6 @@ if(!empty($errors)) {
 <p><input type="submit" name="submit" value="register" class="button" /></p>
 </form>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris accumsan nibh rutrum elit venenatis hendrerit tempor justo commodo. Aliquam id tellus tortor. Morbi a mi neque. Sed suscipit urna ac metus commodo vitae faucibus lorem congue. Nunc non metus nec erat porttitor aliquam. Suspendisse neque massa, auctor eget aliquam ut, tempus eu nisl. Integer a lacus nec enim mollis tristique ut vel nibh. Fusce nec massa vel enim venenatis dignissim quis eu eros. Phasellus sit amet lacinia erat. Praesent ornare urna quis erat congue vestibulum. Cras et leo sed libero hendrerit convallis quis at mauris.</p>
-
-<p>Donec et quam tortor, et vulputate nulla. Vestibulum egestas facilisis ultricies. Vestibulum mattis, arcu sit amet varius ornare, arcu nulla ullamcorper eros, eget scelerisque sapien tellus eget risus. In hac habitasse platea dictumst. Donec laoreet arcu sed elit aliquam tristique. Cras lacinia luctus tortor, ut vestibulum metus porttitor vitae. Donec non quam quis lorem fermentum tincidunt vitae in lectus. Suspendisse ultricies convallis odio, eu interdum lectus cursus nec. Aliquam erat volutpat. Integer dignissim aliquet leo, rutrum commodo lacus vestibulum sed. Cras dapibus magna in odio varius molestie fermentum velit posuere.</p>
-
-<p>Phasellus nec ante est. Pellentesque non felis a eros vestibulum eleifend. Morbi purus dolor, sagittis vel rhoncus ac, dignissim et neque. Integer tristique ultrices arcu ac iaculis. Morbi velit enim, pharetra quis cursus eget, ultrices sed eros. Phasellus placerat molestie eleifend. Donec pellentesque sem ac est volutpat ac laoreet erat tristique.</p>
-
-<p>Maecenas justo nisi, hendrerit non pretium et, sollicitudin nec lectus. Donec vitae nunc leo, quis tristique orci. Praesent a est ipsum. Proin congue justo vel est auctor consequat. Cras accumsan orci a lacus lacinia ut ornare nisi interdum. Sed ut nunc quam. Pellentesque ut fringilla tellus. Nunc viverra purus in arcu varius posuere.</p>
-
-<p>In hac habitasse platea dictumst. In at odio sit amet turpis ullamcorper volutpat. Suspendisse potenti. Fusce iaculis velit non dolor placerat sodales. Etiam sed magna massa, sed dapibus orci. In magna enim, gravida eu imperdiet sed, placerat vitae turpis. Morbi id libero sit amet leo aliquam tincidunt. Ut vel magna ac est facilisis gravida id vel lectus. Phasellus tincidunt pretium enim id bibendum. Fusce pharetra est fringilla lacus viverra vitae aliquam lacus ornare. Donec hendrerit dapibus quam, ut sagittis lacus faucibus ut. Proin congue euismod justo, non aliquet turpis adipiscing id. Pellentesque dapibus semper sapien et faucibus. Vivamus purus nibh, ornare in luctus vel, vulputate vitae mauris.</p>
 
 <?php
 }

@@ -92,20 +92,23 @@ a {
 	font-size:18px;
 	line-height:32px;	
 }
-.input {
+input {
     border: 1px solid #006;
     background: #ffc;
+    display:block;
 }
 .button {
     border: 1px solid #006;
     background: #CCC;
 }
-input {
-	display:block;
-}
+
 
 #footer {
 	height:228px;
 	width:990px;
 	display:block;
+}
+
+form {
+	margin:0 auto;
 }
