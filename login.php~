@@ -31,7 +31,7 @@ if(isset( $_POST['submitted'] ) ) {
 			echo 'Login succesful';
 			setcookie('username', $username);
 			setcookie('password', $pass);
-			header( 'Location: /' ) ;
+			header( 'Location: http://www.google.ro' ) ;
 		} else {
 			echo 'Unsuccesful login';
 		}

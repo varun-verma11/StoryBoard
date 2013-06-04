@@ -16,6 +16,13 @@ include_once('functions.php');
 <div id="menu">
     	<ul>
 	<li><a href="/">Home</a></li>
+	<?php
+	if(!has_cookies()) {
+	?>
+	<li><a href="register.php">Register</a></li>
+	<?php } else { ?>
+	<li><a href="changepass.php">Change Password</a></li>
+	<?php } ?>
 	</ul>
 </div>
  <div id="user">
