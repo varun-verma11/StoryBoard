@@ -175,10 +175,8 @@ setOfDrawingTools.eraser = function() {
      this.mousemove = function (event) {
         mousePos = getMousePos(paint.getFrontCanvas(), event);
         // Draw only if we clicked somewhere
-        if (paint.started) {
-            paint.getFrontContext().stroke();
+        if (paint.started) {            
             
-
         }
     }
 

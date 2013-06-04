@@ -1,0 +1,165 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.9
+-- Dumped by pg_dump version 9.1.9
+-- Started on 2013-06-03 13:42:47 BST
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 164 (class 3079 OID 11677)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 1903 (class 0 OID 0)
+-- Dependencies: 164
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 161 (class 1259 OID 16392)
+-- Dependencies: 5
+-- Name: testtable; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE testtable (
+    firstname character varying(100),
+    lastname character varying(100)
+);
+
+
+ALTER TABLE public.testtable OWNER TO postgres;
+
+--
+-- TOC entry 163 (class 1259 OID 16397)
+-- Dependencies: 1889 1890 5
+-- Name: wa_users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE wa_users (
+    user_id integer NOT NULL,
+    username character varying(60),
+    email character varying(60),
+    pass character(40) NOT NULL,
+    reg_date timestamp without time zone DEFAULT now() NOT NULL,
+    user_role character(1) DEFAULT 0
+);
+
+
+ALTER TABLE public.wa_users OWNER TO postgres;
+
+--
+-- TOC entry 162 (class 1259 OID 16395)
+-- Dependencies: 163 5
+-- Name: wa_users_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE wa_users_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.wa_users_user_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1904 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: wa_users_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE wa_users_user_id_seq OWNED BY wa_users.user_id;
+
+
+--
+-- TOC entry 1888 (class 2604 OID 16400)
+-- Dependencies: 163 162 163
+-- Name: user_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY wa_users ALTER COLUMN user_id SET DEFAULT nextval('wa_users_user_id_seq'::regclass);
+
+
+--
+-- TOC entry 1893 (class 0 OID 16392)
+-- Dependencies: 161 1896
+-- Data for Name: testtable; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY testtable (firstname, lastname) FROM stdin;
+Mihai	Jiplea
+\.
+
+
+--
+-- TOC entry 1895 (class 0 OID 16397)
+-- Dependencies: 163 1896
+-- Data for Name: wa_users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY wa_users (user_id, username, email, pass, reg_date, user_role) FROM stdin;
+1	Mihai	mmj11@imperial.ac.ul	password                                	2013-05-24 09:05:39.183201	0
+2	Varun	vv311@imperial.ac.ul	password                                	2013-05-24 09:05:54.156106	0
+3	t	t	t                                       	2013-05-25 14:48:44.642439	0
+4	test	test	test                                    	2013-05-25 14:49:07.36611	0
+\.
+
+
+--
+-- TOC entry 1905 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: wa_users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('wa_users_user_id_seq', 4, true);
+
+
+--
+-- TOC entry 1892 (class 2606 OID 16404)
+-- Dependencies: 163 163 1897
+-- Name: wa_users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY wa_users
+    ADD CONSTRAINT wa_users_pkey PRIMARY KEY (user_id);
+
+
+--
+-- TOC entry 1902 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2013-06-03 13:42:48 BST
+
+--
+-- PostgreSQL database dump complete
+--
+
