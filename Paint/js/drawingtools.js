@@ -175,9 +175,21 @@ setOfDrawingTools.eraser = function() {
      this.mousemove = function (event) {
         mousePos = getMousePos(paint.getFrontCanvas(), event);
         // Draw only if we clicked somewhere
-        if (paint.started) {            
+        
+        if (paint.started) {
+            paint.getMainContext().beginPath();
+            paint.getMainContext().globalCompositeOperation = "destination-out";
+            paint.getMainContext().strokeStyle = "rgba(0,0,0,1.0)";
+            paint.getMainContext().moveTo(previousMousePos.x, previousMousePos.y);
             
+
+            paint.getMainContext().globalCompositeOperation = 'destination-out';
+            paint.getMainContext().fillStyle = 'rgba(255,0,0,0.5);';
+            paint.getMainContext().strokeStyle = 'rgba(255,0,0,0.5);';
+            paint.getMainContext().stroke();
         }
+        previousMousePos = mousePos;
+
     }
 
     this.mouseup = function (event) {

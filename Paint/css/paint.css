@@ -43,15 +43,21 @@ div#content{
 }
 div#divCanvas canvas {
     position                    : absolute;
-    top                         : 0;
-    left                        : 0;
+    display                     : block;
+    top                         : 10px;
+    left                        : 10px;
     border-right      			: 1px solid #aaaaaa;
     border-bottom 				: 1px solid #aaaaaa;
     border-bottom-right-radius	: 20px;
+    border-bottom-left-radius   : 20px;
+    border-top-right-radius     : 20px;
+    border-top-left-radius      : 20px;
     cursor                      : crosshair;
 }
 div#divCanvas canvas#canvasMain {
     background-color    : #fff;
+    min-width: 100%;
+    min-height: 100%; 
 }
 
 div#righColumn{

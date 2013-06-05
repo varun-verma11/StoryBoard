@@ -53,9 +53,6 @@
                     ajax.send(img);
                 };
             </script>
-            <button type="button" id="save" onClick="saveCanvas()">
-                SAVE
-            </button>
             <h6>Pick a tool</h6>
             <span id="line">Line</span>
             <span id="pencil">Pencil</span>
