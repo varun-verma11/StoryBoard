@@ -1,0 +1,94 @@
+body {
+  background: url(img/bg.gif) repeat;
+  margin:0px;
+}
+
+a {
+	text-decoration:none;
+}
+
+#mainwrap {
+  width: 990px;
+  margin: 0 auto;
+}
+
+#wrap {
+  width:inherit;
+  background: url(img/footer.gif) repeat-x bottom #FFF;
+
+  position: absolute;
+  top:0;
+  bottom:0;
+}
+
+#header {
+  height:155px;
+}
+
+#logo {
+  background: url(img/logo.gif);
+  width:267px;
+  height:51px;
+  display:block;
+  position:absolute;
+  left:30px;
+  top:25px;
+}
+
+#menu {
+	font:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#3f4950;
+	top:100px;
+	position:absolute;
+}
+
+#header a:link, #header a:visited, #header a:hover, #header a:active {
+	color:#3f4950;
+	font-size:14px;
+	font-weight:normal;
+}
+
+#menu .linkdesc {
+	display:inline;
+	/*position:absolute;*/
+	left:4px;	
+}
+
+#menu li {
+	border-right:thin dotted #CCC;
+	padding-right:10px;
+	list-style-type:none;
+	letter-spacing:0.5px;
+	display:inline;
+	margin-left:6px;
+}
+
+#content {
+	padding:0 15px;	
+}
+
+#user {
+	position:absolute;
+	right:100px;
+	top:50px;	
+}
+#user a {
+	font-size:16px;	
+}
+
+#avatar {
+	background:url(img/avatar.gif);
+	display:block;
+	width:32px;
+	height:32px;
+	float:left;
+	
+}
+
+#user a {
+	margin-left:16px;
+	text-transform:capitalize;
+	font-size:18px;
+	line-height:32px;	
+}
