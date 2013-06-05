@@ -43,7 +43,7 @@ if(!empty($errors)) {
 
 } else {
 	pg_query($conn, $query) or die('Database error. Cannot change the password');
-#echo $query;
+echo $query;
 }
 } else {
 ?>

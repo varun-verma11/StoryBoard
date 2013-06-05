@@ -92,7 +92,7 @@ a {
 	font-size:18px;
 	line-height:32px;	
 }
-input, textarea {
+input {
     border: 1px solid #006;
     background: #ffc;
     display:block;
