@@ -2,22 +2,42 @@
 <html>
 <head>
     <title>StoryBoard</title>
-    <!-- note : in HTML5 no need to specify type=...-->
     <link rel="stylesheet" href="css/paint.css"/>
     <script src="js/jquery-1.7.2.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/paint.js"></script>
     <script src="js/drawingtools.js"></script>
-    <!-- add this if you are not running in Opera and want a color chooser -->
     <script src="js/jscolor/jscolor.js"></script>
     <script type="text/javascript">
-        // Run when the DOM is ready
         $(document).ready(function () {
-            // Create the pseudo object which will handle the main canvas
             paint = new PaintObject("canvasMain");
-            // Bind events to the canvas
             paint.bindMultiplexEvents();
         });
+
+        jQuery(window).bind(
+            "beforeunload", 
+            function() { 
+                saveCanvas();
+            }
+        );
+
+        $(document).ready(function () {
+            window.setInterval(saveCanvas, 60000);
+        });
+
+        function saveCanvas()
+        {
+            var img = document.getElementById("canvasMain").toDataURL("image/png");
+            var ajax = new XMLHttpRequest();
+            var fp = "<?php echo $_GET['fp']; ?>";
+            if (fp=="") {
+                return;
+            }
+            img = "Images/" + fp + ".png#" + img;
+            ajax.open("POST", 'testSave.php', false);
+            ajax.setRequestHeader('Content-Type', 'application/upload');
+            ajax.send(img);
+        };
     </script>
 </head>
 <body>
@@ -30,32 +50,9 @@
         </div>
 
     </div>
+    
     <div id="righColumn">
         <div id="drawCommands">
-            <script>
-                $(document).ready(function () {
-                    // Configure to save every 5 seconds
-                    window.setInterval(saveCanvas, 60000);
-                });
-
-                function saveCanvas()
-                {
-                    var img = document.getElementById("canvasMain").toDataURL("image/png");
-                    var ajax = new XMLHttpRequest();
-                    var fp = "<?php echo $_GET['fp']; ?>";
-                    if (fp=="") {
-                        return;
-                    }
-                    // var fp = prompt("Please enter the name of the file.");
-                    img = "Images/" + fp + ".png#" + img;
-                    ajax.open("POST", 'testSave.php', false);
-                    ajax.setRequestHeader('Content-Type', 'application/upload');
-                    ajax.send(img);
-                };
-            </script>
-            <button type="button" id="save" onClick="saveCanvas()">
-                SAVE
-            </button>
             <h6>Pick a tool</h6>
             <span id="line">Line</span>
             <span id="pencil">Pencil</span>

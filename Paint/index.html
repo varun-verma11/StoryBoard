@@ -1,1 +1,74 @@
-<meta http-equiv="refresh" content="0; url=./paint.php"> 
+<!DOCTYPE HTML>
+<html>
+	<body>
+	<head>
+		<meta charset="UTF-8">
+	 	<?php
+			header('X-Frame-Options: GOFORIT'); 
+		?>
+	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	    <link rel="stylesheet" href="./fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+	    <script type="text/javascript" src="./fancybox/source/jquery.fancybox.pack.js"></script>
+	    <link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<script>
+		$("#iframelink").fancybox({
+			'width'				: '90%',
+			'height'			: '90%',
+			'autoScale'			: true,
+			'transitionIn'		: 'elastic',
+			'transitionOut'		: 'fade',
+			'type'				: 'iframe'
+		});
+
+		$(document).ready(function() {
+	    	$('.fancybox').fancybox();
+	    });
+
+	    $(document).ready(function() {
+	        $('.fancybox').fancybox({
+	            padding : 0,
+	            openEffect  : 'elastic'
+	    	});
+		});
+
+	</script>
+
+	<div id="mainwrap">
+		<div id="wrap">
+			<div id="header">
+				<a id="logo" href="/"></a> <!-- Main logo -->
+				<div id="menu">
+			    	<ul>
+			        	<li>
+			        		<a id="iframelink" href="./paint.php" title="Add a Frame">
+								Add a Frame!!
+							</a>
+			        	</li>
+			            <li>
+			            	<a href="#">Item 2</a>
+			            </li>
+			            <li>
+			            	<a href="#">Item 3</a>
+			            </li>
+			            <li>
+			            	<a href="#">Item 4</a>
+			            </li>
+			        </ul>
+			        
+			    </div>
+			    <div id="user">
+			    		<div id="avatar"></div>
+			    		<a href="#">Sign in</a>
+			    	</div>
+			</div>
+
+			<div id="content">
+			Test
+
+			</div>
+		</div>
+	</div>
+
+	</body>
+</html> 
