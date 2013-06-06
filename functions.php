@@ -25,6 +25,22 @@ function has_cookies() {
 
 }
 
+function run_db_query($query) {
+
+	echo $query;
+	echo $conn;
+	return pg_query($conn, $query) or die('Database error');
+}
+
+function get_field($query, $field) {
+
+	$result = run_db_query($query);
+	$row = pg_fetch_array($result);
+
+	return $row[$field];
+}
+
+
 
 
 ?>

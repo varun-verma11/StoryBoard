@@ -20,12 +20,24 @@ include_once('functions.php');
 	if(!has_cookies()) {
 	?>
 	<li><a href="register.php">Register</a></li>
-	<?php } else { ?>
-	<li><a href="changepass.php">Change Password</a></li>
-	<li><a href="boards.php">Boards Panel</a></li>
 	<?php } ?>
 	</ul>
 </div>
+
+<?php
+	if( has_cookies() ) { ?>
+	<div id="usermenu">
+		
+		<ul>
+			<b>User Area:</b>
+			<li><a href="changepass.php">Change Password</a></li>
+			<li><a href="boards.php">Boards Panel</a></li>
+		</ul>
+	</div>
+	<?php
+	}
+?>
+
  <div id="user">
  <div id="avatar"></div>
 <?php
