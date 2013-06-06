@@ -48,12 +48,8 @@ if(!empty($errors)) {
 	
 	$query = "INSERT INTO wa_users(username, email, pass) VALUES ('$username', '$email', '$password');";
 	//echo $query; 
-	$result = pg_query($conn, $query);
-	if(!$result) {
-		echo 'Unable to add user to database';
-	} else {
-		echo 'Registration succesful!';
-	}
+	pg_query($conn, $query) or die('Unable to add user to database');
+	echo 'Registration succesful!';
 
 }
 	
