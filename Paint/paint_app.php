@@ -7,6 +7,7 @@
 
 <html>
 	<head>
+        <meta charset="UTF-8">
     	<link rel="stylesheet" href="./SkyBrush/skybrush/css/skybrush.css" />
         <?php
             header('X-Frame-Options: GOFORIT'); 
@@ -55,6 +56,7 @@
     </style>
     <body>
     	<div class="skybrush"></div>
+
         <script src="./SkyBrush/skybrush/js/skybrush.js"></script>
         <script src="./SkyBrush/skybrush/js/jquery-1.8.2.min.js"></script>
         <script src="./SkyBrush/skybrush/js/jquery.more.js"></script>
@@ -64,16 +66,8 @@
             var skybrush = new SkyBrush( dom, {
                 image_location: './SkyBrush/skybrush/images/skybrush/'
             });
-            var isSaved = false; 
-            /*
-                ****************
-                ****************
-                    NEED TO MAKE SURE THAT background image is set
-                    to loaded image
-                ****************
-                ****************
-            */
-            // skybrush.setImage("<img src="+img.src + ">");
+            var isSaved = false;
+            skybrush.setImage(img);
             skybrush.onDraw( function() {
                 isSaved = false;
             });
