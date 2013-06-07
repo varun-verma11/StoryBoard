@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-    $board = "Board";
-    $frame = "1";
+    $board = $_GET['b'];
+    $frame = $_GET['f'];
 ?>
 
 <html>
@@ -17,18 +17,20 @@
             var frame = "<?php echo $frame; ?>";
             var filepath = "./Images/" + board + "/" + frame + ".png";
             var fp = filepath;
-            if (!ImageExist(filepath))
+            var img = new Image();
+            var isSaved = false; 
+            if (!image_exists_on_server(filepath))
             {
                 document.write('<meta http-equiv="refresh"' + 
                     'content="0; url=./NonExistentFrame.html">');
             };
 
-            function ImageExist(url) 
+            function image_exists_on_server(url) 
             {
-                var img = new Image();
                 img.src = url;
                 return img.height != 0;
             };
+
         </script>
     </head>
     <style>
@@ -51,7 +53,21 @@
             var skybrush = new SkyBrush( dom, {
                 image_location: './SkyBrush/skybrush/images/skybrush/'
             });
+            /*
 
+                ****************
+                ****************
+                    NEED TO MAKE SURE THAT background image is set
+                    to loaded image
+                ****************
+                ****************
+
+
+            */
+            // skybrush.setImage(img);
+            skybrush.onDraw( function() {
+                isSaved = false;
+            });
             jQuery(window).bind(
                 "beforeunload", 
                 function() { 
@@ -60,21 +76,23 @@
             );
            
             $(document).ready(function () {
-                window.setInterval(saveCanvas, 60000);
+                window.setInterval(saveCanvas, 5000);
             });
 
             function saveCanvas()
             {
+                if (isSaved) {
+                    return;
+                }
                 var img = skybrush.getImageData("image/png");
                 var ajax = new XMLHttpRequest();
                 // var fp = "<?php echo $_GET['fp']; ?>";
-                if (fp=="") {
-                    return;
-                }
-                img = "./Images/" + fp + ".png#" + img;
+                img = fp + "#" + img;
+                alert(fp);
                 ajax.open("POST", './testSave.php', false);
                 ajax.setRequestHeader('Content-Type', 'application/upload');
                 ajax.send(img);
+                isSaved = true;
             };
         </script>
     </body>
