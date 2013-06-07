@@ -18,8 +18,9 @@
             var filepath = "./Images/" + board + "/" + frame + ".png";
             var fp = filepath;
             var img = new Image();
-            var isSaved = false; 
-            if (!image_exists_on_server(filepath))
+            if ( !image_exists_on_server(filepath) 
+                    || image_being_edited(filepath)
+                )
             {
                 document.write('<meta http-equiv="refresh"' + 
                     'content="0; url=./NonExistentFrame.html">');
@@ -29,6 +30,16 @@
             {
                 img.src = url;
                 return img.height != 0;
+            };
+
+            function image_being_edited(url)
+            {
+                /*
+                    This function will consult the database to check
+                    if the current picture is being edited or not.
+                    Currently returns false by default.
+                */
+                return false;
             };
 
         </script>
@@ -53,18 +64,16 @@
             var skybrush = new SkyBrush( dom, {
                 image_location: './SkyBrush/skybrush/images/skybrush/'
             });
+            var isSaved = false; 
             /*
-
                 ****************
                 ****************
                     NEED TO MAKE SURE THAT background image is set
                     to loaded image
                 ****************
                 ****************
-
-
             */
-            // skybrush.setImage(img);
+            // skybrush.setImage("<img src="+img.src + ">");
             skybrush.onDraw( function() {
                 isSaved = false;
             });
@@ -88,7 +97,6 @@
                 var ajax = new XMLHttpRequest();
                 // var fp = "<?php echo $_GET['fp']; ?>";
                 img = fp + "#" + img;
-                alert(fp);
                 ajax.open("POST", './testSave.php', false);
                 ajax.setRequestHeader('Content-Type', 'application/upload');
                 ajax.send(img);
