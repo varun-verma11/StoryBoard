@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+	 	<meta charset="UTF-8">
+	 	<title>StoryBoard</title>
+	 	<?php
+			header('X-Frame-Options: GOFORIT'); 
+		?>
+	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	    <link rel="stylesheet" href="./fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+	    <script type="text/javascript" src="./fancybox/source/jquery.fancybox.pack.js"></script>
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="../source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="../source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="../source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="../source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="../source/helpers/jquery.fancybox-media.js?v=1.0.5"></script>
+
+	</head>
+
+	<body bgcolor="#FFFFFF">
+		<script>
+			$("#iframelink").fancybox({
+				'width'				: '100%',
+				'height'			: '100%',
+				'autoScale'			: false,
+				'transitionIn'		: 'elastic',
+				'transitionOut'		: 'fade',
+				'type'				: 'iframe'
+			});
+
+        	$(document).ready(function() {
+            	$('.fancybox').fancybox();
+	        });
+
+	        $(document).ready(function() {
+	            $('.fancybox').fancybox({
+	                padding : 0,
+	                openEffect  : 'elastic'
+            	});
+        	});
+
+    	</script>
+
+		<a href="../images/test.png" class="fancybox" title="Sample title">
+			Examplenj
+		</a>
+		<br>
+		<a id="iframelink" href="./bare_bones.php?fp=testSave">
+			Iframe
+		</a>
+<br>
+		<a href="../lib/jquery-1.9.0.min.js" class="fancybox" rel="fancybox-thumb" title="slideshow1">
+			slideshow
+		</a>
+
+	</body>
+
+</html>
+
+
