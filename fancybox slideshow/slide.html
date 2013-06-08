@@ -28,83 +28,35 @@
 			 *  Simple image gallery. Uses default settings
 			 */
 
-			$('.fancybox').fancybox();
+			//$('.fancybox').fancybox();
+
+			$('.fancybox').fancybox({
+ 				openEffect  : 'none',
+ 				closeEffect : 'none',
+ 				prevEffect : 'none',
+ 				nextEffect : 'none',
+ 				closeBtn  : false,
+ 				arrows    : false,
+ 				nextClick : true,
+ 				helpers : {
+  					title : {
+   						type : 'over'
+						    },
+  					buttons : {},
+  					thumbs : {
+   						width : 70,
+   						height : 70
+  					}
+ 				},
+ 				afterLoad : function() {
+  				this.title = 'Frame ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+ }
+});
 
 			/*
 			 *  Different effects
-			 */
-
-			 /*
-			$('.fancybox-thumbs').fancybox({
-				prevEffect : 'none',
-				nextEffect : 'none',
-
-				closeBtn  : false,
-				arrows    : false,
-				nextClick : true,
-
-				helpers : {
-					thumbs : {
-						width  : 70,
-						height : 70
-					}
-				}
-			});
-
-
-			$('.fancybox-buttons').fancybox({
-				openEffect  : 'none',
-				closeEffect : 'none',
-
-				prevEffect : 'none',
-				nextEffect : 'none',
-
-				closeBtn  : false,
-
-				helpers : {
-					title : {
-						type : 'inside'
-					},
-					buttons	: {}
-				},
-
-				afterLoad : function() {
-					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
-				}
-			});
-
-			 */
-
-			$(".storyboard").fancybox({
-				openEffect  : 'none',
-				closeEffect : 'none',
-				prevEffect : 'none',
-				nextEffect : 'none',
-
-				closeBtn : false,
-				arrows   : false,
-				nextClick : true,
-
-
-				helpers: {
-					title : {
-						/* CHECK */
-						type : 'over'
-					},
-					buttons: {},
-					overlay : {
-						speedOut : 0
-					}
-					thumbs : {
-						width  : 70,
-						height : 70
-					}
-				},
-				afterLoad : function() {
-					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
-				}
-			});
-
+			//  */
+	
 			// Change title type, overlay closing speed
 			$(".fancybox-effects-a").fancybox({
 				helpers: {
@@ -207,8 +159,8 @@
 
 				helpers : {
 					thumbs : {
-						width  : 70,
-						height : 70
+						width  : 50,
+						height : 50
 					}
 				}
 			});
@@ -280,17 +232,17 @@
 <body>
 	<h3>Storyboard 1</h3>
 	<p>
-		<a class="fancybox-thumbs" data-fancybox-group="story1" href="../images/1.png"><img width="150" height="100" src="../images/1.png" alt="1" /></a>
-		<a class="fancybox-thumbs" data-fancybox-group="story1" href="../images/2.png"></a>
-		<a class="fancybox-thumbs" data-fancybox-group="story1" href="../images/3.png"></a>
-		<a class="fancybox-thumbs" data-fancybox-group="story1" href="../images/4.png"></a>
+		<a class="fancybox" data-fancybox-group="story1" href="../images/1.png"><img width="150" height="100" src="../images/1.png" alt="1" /></a>
+		<a class="fancybox" data-fancybox-group="story1" href="../images/2.png"></a>
+		<a class="fancybox" data-fancybox-group="story1" href="../images/3.png"></a>
+		<a class="fancybox" data-fancybox-group="story1" href="../images/4.png"></a>
 
 
 		<br>
 		<h3>Storyboard 2</h3>
-		<a class="fancybox-thumbs" data-fancybox-group="thumb2" href="../images/5.png"><img width="150" height="100" src="../images/5.png" alt="2" /></a>
-		<a class="fancybox-thumbs" data-fancybox-group="thumb2" href="../images/6.png"></a>
-		<a class="fancybox-thumbs" data-fancybox-group="thumb2" href="../images/7.png"></a>
-	</p>s
+		<a class="fancybox" data-fancybox-group="thumb2" href="../images/5.png"><img width="150" height="100" src="../images/5.png" alt="2" /></a>
+		<a class="fancybox" data-fancybox-group="thumb2" href="../images/6.png"></a>
+		<a class="fancybox" data-fancybox-group="thumb2" href="../images/7.png"></a>
+	</p>sksdaf
 </body>
 </html>
