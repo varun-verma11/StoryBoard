@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 
-<?php
-    $board = $_GET['b'];
-    $frame = $_GET['f'];
-?>
-
 <html>
 	<head>
         <meta charset="UTF-8">
     	<link rel="stylesheet" href="./SkyBrush/skybrush/css/skybrush.css" />
         <?php
             header('X-Frame-Options: GOFORIT'); 
+            $board = $_GET['b'];
+            $frame = $_GET['f'];
+            $filepath = "./Images/" . $board . "/" . $frame . ".png";
+
+            if (!file_exists($filepath))
+            {
+                echo '<meta http-equiv="refresh" content="0; url=./NonExistentFrame.html">';
+            }
         ?>
 
         <script type="text/javascript">
@@ -18,20 +21,6 @@
             var frame = "<?php echo $frame; ?>";
             var filepath = "./Images/" + board + "/" + frame + ".png";
             var fp = filepath;
-            var img = new Image();
-            if ( !image_exists_on_server(filepath) 
-                    || image_being_edited(filepath)
-                )
-            {
-                document.write('<meta http-equiv="refresh"' + 
-                    'content="0; url=./NonExistentFrame.html">');
-            };
-
-            function image_exists_on_server(url) 
-            {
-                img.src = url;
-                return img.height != 0;
-            };
 
             function image_being_edited(url)
             {
@@ -67,6 +56,8 @@
                 image_location: './SkyBrush/skybrush/images/skybrush/'
             });
             var isSaved = false;
+            var img  = new Image();
+            img.src = filepath;
             skybrush.setImage(img);
             skybrush.onDraw( function() {
                 isSaved = false;
@@ -90,7 +81,7 @@
                 var img = skybrush.getImageData("image/png");
                 var ajax = new XMLHttpRequest();
                 // var fp = "<?php echo $_GET['fp']; ?>";
-                img = fp + "#" + img;
+                img = filepath + "#" + img;
                 ajax.open("POST", './testSave.php', false);
                 ajax.setRequestHeader('Content-Type', 'application/upload');
                 ajax.send(img);
