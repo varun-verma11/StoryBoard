@@ -25,6 +25,25 @@ function has_cookies() {
 
 }
 
+function create_physical_board($path) {
+
+	echo '<br />'.$path.'<br />';
+	if(!mkdir($path, 0777, true))
+		return false;
+
+	$img = imagecreatetruecolor(540, 460);
+	imagesavealpha($img, true); 
+
+	$color = imagecolorallocatealpha($img,0x00,0x00,0x00,127); 
+	imagefill($img, 0, 0, $color); 
+
+	imagepng($img, $path . '0.png');
+
+	imagedestroy($img);
+	return true;
+}
+
+
 function run_db_query($query) {
 
 	echo $query;
