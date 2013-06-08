@@ -25,9 +25,22 @@ function has_cookies() {
 
 }
 
+function addblankPNG($path, $npages) {
+
+	$img = imagecreatetruecolor(540, 460);
+	imagesavealpha($img, true);
+
+	$color = imagecolorallocatealpha($img,0x00,0x00,0x00,127); 
+	imagefill($img, 0, 0, $color); 
+
+	imagepng($img, $path . $npages . '.png');
+
+	imagedestroy($img);
+}
+
 function create_physical_board($path) {
 
-	echo '<br />'.$path.'<br />';
+	#echo '<br />'.$path.'<br />';
 	if(!mkdir($path, 0777, true))
 		return false;
 
@@ -59,6 +72,23 @@ function get_field($query, $field) {
 	return $row[$field];
 }
 
+function deleteDir($dirPath) {
+    if (! is_dir($dirPath)) {
+        throw new InvalidArgumentException("$dirPath must be a directory");
+    }
+    if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+        $dirPath .= '/';
+    }
+    $files = glob($dirPath . '*', GLOB_MARK);
+    foreach ($files as $file) {
+        if (is_dir($file)) {
+            self::deleteDir($file);
+        } else {
+            unlink($file);
+        }
+    }
+    rmdir($dirPath);
+}
 
 
 

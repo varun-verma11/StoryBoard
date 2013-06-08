@@ -58,6 +58,22 @@
 
 		}
 
+	} elseif(isset($_GET['delete'])) {
+
+		$bid = $_GET['delete'];
+		$delete_query = 'DELETE FROM wa_storyboards WHERE id=\'' . $bid . '\'; DELETE FROM wa_ownership WHERE bid=\'' . $bid . '\'';
+	#	
+
+		$name_get_query = 'SELECT name FROM wa_storyboards WHERE id=\'' . $bid . '\'';
+		$result = pg_query($conn, $name_get_query) or die('Database error');
+		$row = pg_fetch_array($result);
+		$board_name = $row['name'];
+
+		pg_query($conn, $delete_query) or die('Database error');
+
+		$path = 'storyboard/' . $board_name . '/';
+		deleteDir($path);
+
 	}
 
 ?>
@@ -85,7 +101,7 @@
 	$row = pg_fetch_array($result);
 	$uid = $row['user_id'];
 
-	$user_boards_query = '(SELECT wa_storyboards.name 
+	$user_boards_query = '(SELECT wa_storyboards.name, wa_ownership.bid
 FROM wa_storyboards
 INNER JOIN wa_ownership
 ON wa_storyboards.id = wa_ownership.bid
@@ -96,7 +112,8 @@ WHERE wa_users.user_id='. $uid . ')';
 	$results = pg_query($conn, $user_boards_query);
 	echo '<table border=\'1\'>';
 	while($row = pg_fetch_array($results)) {
-		echo '<tr><td>' . $row[0] . '</td><td><a href="/board.php?name='. $row[0] .'?page=0">Use Board</a></td><td><a href=\'#\'>Delete Board</a></td></tr>';
+		#HUGE SERURITY RISK:
+		echo '<tr><td>' . $row[0] . '</td><td><a href="/board.php?name='. $row[0] .'?page=0">Use Board</a></td><td><a href=\'boards.php?delete='. $row[1] .'\'>Delete Board</a></td></tr>';
 	
 
 	}
