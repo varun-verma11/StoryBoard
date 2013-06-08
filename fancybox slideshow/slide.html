@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fancyBox - Fancy jQuery Lightbox Alternative | Demonstration</title>
+	<title>Slideshow work</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 	<!-- Add jQuery library -->
@@ -28,13 +28,14 @@
 			 *  Simple image gallery. Uses default settings
 			 */
 
-			//$('.fancybox').fancybox();
+			$('.fancybox').fancybox();
 
-			$('.fancybox').fancybox({
- 				openEffect  : 'none',
- 				closeEffect : 'none',
- 				prevEffect : 'none',
- 				nextEffect : 'none',
+			$('.storyboard').fancybox({
+ 				//openEffect  : 'none',
+ 				//closeEffect : 'none',
+ 				wrapCSS    : 'fancybox-custom',
+ 				prevEffect : 'elastic',
+ 				nextEffect : 'elastic',
  				closeBtn  : false,
  				arrows    : false,
  				nextClick : true,
@@ -48,10 +49,36 @@
    						height : 70
   					}
  				},
+
+			//in case we want to resize images, change the width here...
+ /*				beforeShow: function () {
+   					 // set new fancybox width
+
+    				var newWidth = this.width * 2;
+    				// apply new size to img
+    				$(".fancybox-image").css({
+      					"width": newWidth,
+      					"height": "auto"
+    				});
+    				// set new values for parent container
+    				this.width = newWidth;
+    				this.height = $(".fancybox-image").innerHeight();
+  					},
+*/
+				
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
  				afterLoad : function() {
   				this.title = 'Frame ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
- }
-});
+				 }
+				});
 
 			/*
 			 *  Different effects
@@ -74,6 +101,7 @@
 			// Disable opening and closing animations, change title type
 			$(".fancybox-effects-b").fancybox({
 				openEffect  : 'none',
+				
 				closeEffect	: 'none',
 
 				helpers : {
@@ -232,17 +260,21 @@
 <body>
 	<h3>Storyboard 1</h3>
 	<p>
-		<a class="fancybox" data-fancybox-group="story1" href="../images/1.png"><img width="150" height="100" src="../images/1.png" alt="1" /></a>
-		<a class="fancybox" data-fancybox-group="story1" href="../images/2.png"></a>
-		<a class="fancybox" data-fancybox-group="story1" href="../images/3.png"></a>
-		<a class="fancybox" data-fancybox-group="story1" href="../images/4.png"></a>
-
+		<a class="storyboard" data-fancybox-group="story1" href="../images/2.png"><img width="150" height="100" src="../images/1.png" alt="1" /></a>
+		<a class="storyboard" data-fancybox-group="story1" href="../images/3.png"></a>
+		<a class="storyboard" data-fancybox-group="story1" href="../images/4.png"></a>
+		<a class="storyboard" data-fancybox-group="story1" href="../images/5.png"></a>
+		<a class="storyboard" data-fancybox-group="story1" href="../images/6.png"></a>
+		<a class="storyboard" data-fancybox-group="story1" href="../images/7.png"></a>
+		<a class="storyboard" data-fancybox-group="story1" href="../images/8.png"></a>
+		<a class="storyboard" data-fancybox-group="story1" href="../images/9.png"></a>
+		<a class="storyboard" data-fancybox-group="story1" href="../images/11.png"></a>
 
 		<br>
 		<h3>Storyboard 2</h3>
-		<a class="fancybox" data-fancybox-group="thumb2" href="../images/5.png"><img width="150" height="100" src="../images/5.png" alt="2" /></a>
-		<a class="fancybox" data-fancybox-group="thumb2" href="../images/6.png"></a>
-		<a class="fancybox" data-fancybox-group="thumb2" href="../images/7.png"></a>
+		<a class="storyboard" data-fancybox-group="thumb2" href="../images/5.png"><img width="150" height="100" src="../images/5.png" alt="2" /></a>
+		<a class="storyboard" data-fancybox-group="thumb2" href="../images/6.png"></a>
+		<a class="storyboard" data-fancybox-group="thumb2" href="../images/7.png"></a>
 	</p>sksdaf
 </body>
 </html>
