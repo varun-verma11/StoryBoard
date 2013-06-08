@@ -11,9 +11,12 @@
             $filepath = "./Images/" . $board . "/" . $frame . ".png";
             $age = time()-filemtime($filepath);
 
-            if (!file_exists($filepath) or $age<10)
+            if (!file_exists($filepath))
             {
                 echo '<meta http-equiv="refresh" content="0; url=./NonExistentFrame.html">';
+            }  else if ($age<10)
+            {
+                echo '<meta http-equiv="refresh" content="0; url=./concurrent_access.html">';
             }
         ?>
     </head>
@@ -38,37 +41,30 @@
             var skybrush = new SkyBrush( dom, {
                 image_location: './SkyBrush/skybrush/images/skybrush/'
             });
-            var isSaved = true;
             var filepath = "<?php echo $filepath ?>";
             var img  = new Image();
             img.src = filepath;
             skybrush.setImage(img);
 
-            skybrush.onDraw( function() {
-                isSaved = false;
-            });
             jQuery(window).bind(
                 "beforeunload", 
                 function() { 
                     saveCanvas();
                 }
             );
+            saveCanvas();
             $(document).ready(function () {
                 window.setInterval(saveCanvas, 5000);
             });
 
             function saveCanvas()
             {
-                // if (isSaved) {
-                //     return;
-                // }
                 var img = skybrush.getImageData("image/png");
                 var ajax = new XMLHttpRequest();
                 img = filepath + "#" + img;
                 ajax.open("POST", './testSave.php', false);
                 ajax.setRequestHeader('Content-Type', 'application/upload');
                 ajax.send(img);
-                isSaved = true;
             };
         </script>
     </body>
