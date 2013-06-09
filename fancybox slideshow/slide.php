@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>fancyBox - Fancy jQuery Lightbox Alternative | Demonstration</title>
+	<title>Slideshow work</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 	<!-- Add jQuery library -->
-	<script type="text/javascript" src="../lib/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="./fancybox/lib/jquery-1.9.0.min.js"></script>
 
 	<!-- Add mousewheel plugin (this is optional) -->
-	<script type="text/javascript" src="../lib/jquery.mousewheel-3.0.6.pack.js"></script>
+	<script type="text/javascript" src="./fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
 
 	<!-- Add fancyBox main JS and CSS files -->
-	<script type="text/javascript" src="../source/jquery.fancybox.js?v=2.1.4"></script>
-	<link rel="stylesheet" type="text/css" href="../source/jquery.fancybox.css?v=2.1.4" media="screen" />
+	<script type="text/javascript" src="./fancybox/source/jquery.fancybox.js?v=2.1.4"></script>
+	<link rel="stylesheet" type="text/css" href="./fancybox/source/jquery.fancybox.css?v=2.1.4" media="screen" />
 
 	<!-- Add Button helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="../source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
-	<script type="text/javascript" src="../source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+	<link rel="stylesheet" type="text/css" href="./fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="./fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
 
 	<!-- Add Thumbnail helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="../source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
-	<script type="text/javascript" src="../source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+	<link rel="stylesheet" type="text/css" href="./fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="./fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -28,13 +28,14 @@
 			 *  Simple image gallery. Uses default settings
 			 */
 
-			//$('.fancybox').fancybox();
+			$('.fancybox').fancybox();
 
-			$('.fancybox').fancybox({
- 				openEffect  : 'none',
- 				closeEffect : 'none',
- 				prevEffect : 'none',
- 				nextEffect : 'none',
+			$('.storyboard').fancybox({
+ 				//openEffect  : 'none',
+ 				//closeEffect : 'none',
+ 				wrapCSS    : 'fancybox-custom',
+ 				prevEffect : 'elastic',
+ 				nextEffect : 'elastic',
  				closeBtn  : false,
  				arrows    : false,
  				nextClick : true,
@@ -48,10 +49,36 @@
    						height : 70
   					}
  				},
+
+			//in case we want to resize images, change the width here...
+ /*				beforeShow: function () {
+   					 // set new fancybox width
+
+    				var newWidth = this.width * 2;
+    				// apply new size to img
+    				$(".fancybox-image").css({
+      					"width": newWidth,
+      					"height": "auto"
+    				});
+    				// set new values for parent container
+    				this.width = newWidth;
+    				this.height = $(".fancybox-image").innerHeight();
+  					},
+*/
+				
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
  				afterLoad : function() {
   				this.title = 'Frame ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
- }
-});
+				 }
+				});
 
 			/*
 			 *  Different effects
@@ -74,6 +101,7 @@
 			// Disable opening and closing animations, change title type
 			$(".fancybox-effects-b").fancybox({
 				openEffect  : 'none',
+				
 				closeEffect	: 'none',
 
 				helpers : {
@@ -230,19 +258,76 @@
 	</style>
 </head>
 <body>
-	<h3>Storyboard 1</h3>
-	<p>
-		<a class="fancybox" data-fancybox-group="story1" href="../images/1.png"><img width="150" height="100" src="../images/1.png" alt="1" /></a>
-		<a class="fancybox" data-fancybox-group="story1" href="../images/2.png"></a>
-		<a class="fancybox" data-fancybox-group="story1" href="../images/3.png"></a>
-		<a class="fancybox" data-fancybox-group="story1" href="../images/4.png"></a>
+	<?php
+		storyboard("Board");
 
+		function storyboard($name)
+		{
+			heading($name);
+			html_break();
+			paragraph(generate_slideshow($name));
+		}
 
-		<br>
-		<h3>Storyboard 2</h3>
-		<a class="fancybox" data-fancybox-group="thumb2" href="../images/5.png"><img width="150" height="100" src="../images/5.png" alt="2" /></a>
-		<a class="fancybox" data-fancybox-group="thumb2" href="../images/6.png"></a>
-		<a class="fancybox" data-fancybox-group="thumb2" href="../images/7.png"></a>
-	</p>sksdaf
+		function heading($name)
+		{
+			echo '<h3>' . $name . '</h3>';
+		}
+
+		function paragraph($text)
+		{
+			echo '<p>' . $text . '</p>';
+		}
+
+		function html_break()
+		{
+			echo '<br>';
+		}
+
+		function generate_slideshow($name)
+		{
+			$num_images = get_number_of_images($name);
+			echo cover_pic($name);
+			echo all_pics($name, $num_images);
+		}
+
+		function cover_pic($name)
+		{
+			echo '<a class="storyboard" data-fancybox-group="' 
+				. $name 
+				. '" href="./' 
+				. $name 
+				. '/1.png"> <img width="150" height="100"'. ' src=./'
+				. $name
+				. '/0.png alt ="1" /> <a/>'
+				. ' ' ;
+		}
+
+		function get_number_of_images($name)
+		{
+			return 10;
+		}
+
+		function all_pics($name, $num_images)
+		{
+			for ($i=1; $i<=$num_images; $i++)
+			{
+				echo_img_for_slideshow($name, $i);
+			}
+		}
+
+		function echo_img_for_slideshow($name, $number)
+		{
+			echo '<a class="storyboard" data-fancybox-group="'
+				. $name
+				. '" href="./'
+				. $name 
+				. '/'
+				. strval($number)
+				. '.png" </a>'
+				. ' ';
+
+		}
+
+	?>
 </body>
 </html>
