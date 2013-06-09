@@ -11,14 +11,14 @@ CREATE TABLE wa_users
 )
 
 -- Table of the a storyboard:
-CREATE TABLE wa_storyboards 
+CREATE TABLE wa_storyboards
 (
-	id serial not null,
-	name character varying(30),
-	description character varying(160),
-	private boolean DEFAULT false,	
-	creation_date timestamp without time zone NOT NULL DEFAULT now(),
-	
+  id serial NOT NULL,
+  name character varying(30),
+  description character varying(160),
+  creation_date timestamp without time zone NOT NULL DEFAULT now(),
+  private boolean DEFAULT false,
+  pages integer DEFAULT 0
 )
 
 -- Ownership of storyboards:
