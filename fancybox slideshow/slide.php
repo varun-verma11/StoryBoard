@@ -47,7 +47,12 @@
   					thumbs : {
    						width : 70,
    						height : 70
-  					}
+  					},
+
+  					overlay: {
+    					opacity: 2, 
+    					css: {'background-color': '#000000'} 
+   					}
  				},
 
 			//in case we want to resize images, change the width here...
@@ -84,6 +89,8 @@
 			 *  Different effects
 			//  */
 	
+
+
 			// Change title type, overlay closing speed
 			$(".fancybox-effects-a").fancybox({
 				helpers: {
@@ -298,7 +305,7 @@
 				. $name 
 				. '/1.png"> <img width="150" height="100"'. ' src=./'
 				. $name
-				. '/0.png alt ="1" /> <a/>'
+				. '/0.png alt ="1" /> </a>'
 				. ' ' ;
 		}
 
@@ -313,7 +320,21 @@
 			{
 				echo_img_for_slideshow($name, $i);
 			}
+			echo_addimg($name, $i); //get last image and storyboard name
 		}
+
+		function echo_addimg($name, $number)
+		{
+			echo '<a class="storyboard fancybox.iframe" data-fancybox-group="'
+				. $name
+				. '" href="../Paint/paint_app.php?b='
+				. $name
+				. '&f='
+				. (++$number)
+				. '" </a>'
+				. ' ';
+		}
+
 
 		function echo_img_for_slideshow($name, $number)
 		{
