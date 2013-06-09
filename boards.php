@@ -113,7 +113,7 @@ WHERE wa_users.user_id='. $uid . ')';
 	echo '<table border=\'1\'>';
 	while($row = pg_fetch_array($results)) {
 		#HUGE SERURITY RISK:
-		echo '<tr><td>' . $row[0] . '</td><td><a href="/board.php?name='. $row[0] .'?page=0">Use Board</a></td><td><a href=\'boards.php?delete='. $row[1] .'\'>Delete Board</a></td></tr>';
+		echo '<tr><td>' . $row[0] . '</td><td><a href="/board.php?name='. $row[0] .'">Use Board</a></td><td><a href=\'boards.php?delete='. $row[1] .'\'>Delete Board</a></td></tr>';
 	
 
 	}
