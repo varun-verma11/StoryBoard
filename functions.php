@@ -90,65 +90,109 @@ function deleteDir($dirPath) {
     rmdir($dirPath);
 }
 
-		function storyboard($name, $npages)
-		{
+function storyboard($name)
+{
+	heading($name);
+	html_break();
+	paragraph(generate_slideshow($name));
+}
 
-			heading($name);
-			html_break();
-			paragraph(generate_slideshow($name, $npages));
-		}
+function heading($name)
+{
+	echo '<h3>' . $name . '</h3>';
+}
 
-		function heading($name)
-		{
-			echo '<h3>' . $name . '</h3>';
-		}
+function paragraph($text)
+{
+	echo '<p>' . $text . '</p>';
+}
 
-		function paragraph($text)
-		{
-			echo '<p>' . $text . '</p>';
-		}
+function html_break()
+{
+	echo '<br>';
+}
 
-		function html_break()
-		{
-			echo '<br>';
-		}
+function generate_slideshow($name)
+{
+	$num_images = get_number_of_images($name);
+	echo cover_pic($name);
+	echo all_pics($name, $num_images);
+}
 
-		function generate_slideshow($name, $npages)
-		{
-			echo cover_pic($name);
-			echo all_pics($name, $npages);
-		}
+function cover_pic($name)
+{
+	echo '<a class="storyboard" data-fancybox-group="' 
+		. $name 
+		. '" href="./storyboard/' 
+		. $name 
+		. '/1.png"> <img width="150" height="100"'. ' src=./storyboard/'
+		. $name
+		. '/0.png alt ="1" /> </a>'
+		. ' ' ;
+}
 
-		function cover_pic($name)
-		{
-			echo '<a class="storyboard" data-fancybox-group="' 
-				. $name 
-				. '" href="storyboard/' 
-				. $name 
-				. '/0.png"> <img width="150" height="100"'. ' src=storyboard/'
-				. $name
-				. '/0.png alt ="1" /> <a/>' ;
-		}
+function get_number_of_images($name)
+{
+	return 10;
+}
 
-		function all_pics($name, $num_images)
-		{
-			echo $num_images;
-			for ($i=1; $i<=$num_images; $i++)
-			{
-				echo_img_for_slideshow($name, $i);
-			}
-		}
+function all_pics($name, $num_images)
+{
+	for ($i=1; $i<=$num_images; $i++)
+	{
+		echo_img_for_slideshow($name, $i);
+	}
+	echo_addimg($name, $i); //get last image and storyboard name
+}
 
-		function echo_img_for_slideshow($name, $number)
-		{
-			echo '<a class="storyboard" data-fancybox-group="'
-				. $name
-				. '" href="storyboard/'
-				. $name 
-				. '/'
-				. strval($number)
-				. '.png" </a>'
-				. ' ';
+function echo_addimg($name, $number)
+{//" title="test title"
 
-		}
+	echo '<a class="storyboard fancybox.iframe" data-fancybox-group="'
+		. $name
+		. '" href="../Paint/paint_app.php?b='
+		. 'Board'
+		. '&f='
+		. '1'
+		. '" </a>'
+		. ' '; 
+	/*
+	echo '<a class="storyboard fancybox.iframe" data-fancybox-group="'
+		. $name
+		. '" href="../Paint/paint_app.php?b='
+		. $name
+		. '&f='
+		. ($number)
+		. '" </a>'
+		. ' '; 
+		*/
+}
+
+
+function echo_img_for_slideshow($name, $number)
+{//get title/caption using name and number from database
+	//for now
+	// echo '<a class="storyboard" data-fancybox-group="'
+	// 	. $name
+	// 	. '" title="Edit this image! <a href=\'../Paint/paint_app.php?b=Board&f=1\'>Launch editor</a>" href="./'
+	// 	. $name 
+	// 	. '/'
+	// 	. strval($number)
+	// 	. '.png" </a>'
+	// 	. ' ';
+
+	echo '<a class="storyboard" data-fancybox-group="'
+		. $name
+		. '" title="Edit this image! <a href=\'./paint.php?b='
+		. $name
+		. '&f='
+		. strval($number)
+		. '\'>Launch editor</a>" href="./storyboard/'
+		. $name 
+		. '/'
+		. strval($number)
+		. '.png" </a>'
+		. ' ';
+
+}
 ?>

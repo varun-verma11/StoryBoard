@@ -8,7 +8,7 @@
             header('X-Frame-Options: GOFORIT'); 
             $board = $_GET['b'];
             $frame = $_GET['f'];
-            $filepath = "./Images/" . $board . "/" . $frame . ".png";
+            $filepath = "./storyboard/" . $board . "/" . $frame . ".png";
             $age = time()-filemtime($filepath);
 
             if (!file_exists($filepath))
@@ -59,6 +59,7 @@
 
             function saveCanvas()
             {
+                alert("saving");
                 var img = skybrush.getImageData("image/png");
                 var ajax = new XMLHttpRequest();
                 img = filepath + "#" + img;
