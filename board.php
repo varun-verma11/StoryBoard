@@ -1,14 +1,12 @@
 <?php include_once('header.php'); 
 
+	$name = $_GET['name'];
+	$query = 'SELECT pages FROM wa_storyboards WHERE name=\'' . $name . '\'';
+	$result = pg_query($conn, $query) or die('Database error');
+	$row = pg_fetch_array($result);
+	$npages = $row[0];
+	
 	if($_GET['delete']) {
-
-		$name = $_GET['name'];
-		
-		$query = 'SELECT pages FROM wa_storyboards WHERE name=\'' . $name . '\'';
-		$result = pg_query($conn, $query) or die('Database error');
-		$row = pg_fetch_array($result);
-		$npages = $row[0];
-		echo $npages;
 
 		if($npages>0) {
 
@@ -25,14 +23,14 @@
 
 	} elseif($_GET['addpage']) {
 
-		$name = $_GET['name'];
-		$query = 'SELECT pages FROM wa_storyboards WHERE name=\'' . $name . '\'';
-		$result = pg_query($conn, $query) or die('Database error');
-		$row = pg_fetch_array($result);
-		$npages = $row[0] + 1;
+		//$name = $_GET['name'];
+		//$query = 'SELECT pages FROM wa_storyboards WHERE name=\'' . $name . '\'';
+		//$result = pg_query($conn, $query) or die('Database error');
+		//$row = pg_fetch_array($result);
+		//$npages = $row[0] + 1;
 		$path = 'storyboard/' . $name . '/';
+		$npages++;
 		addblankPNG($path, $npages);
-
 		$query = 'UPDATE wa_storyboards SET pages=\'' . $npages . '\' WHERE name=\'' . $name . '\'' ;
 		pg_query($conn, $query) or die('Database error');
 
@@ -41,11 +39,11 @@
 		echo 'Go to hell';
 	//} else {
 
-		$name = $_GET['name'];
+		//$name = $_GET['name'];
 		$query = 'SELECT * FROM wa_storyboards WHERE name=\'' . $name . '\'';
 		$result = pg_query($conn, $query) or die('Database error');
 
-
+		echo $npages . '<br />';
 		if(!pg_fetch_array($result)) 
 			#Error page again!
 			echo 'Error!';
@@ -53,8 +51,8 @@
 			echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
 			echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
 		}
-		
-
+		//echo $npages;
+		storyboard($name, $npages);
 
 	//}
 
