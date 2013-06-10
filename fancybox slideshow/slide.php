@@ -41,13 +41,18 @@
  				nextClick : true,
  				helpers : {
   					title : {
-   						type : 'over'
+   						type : 'outside'
 						    },
   					buttons : {},
   					thumbs : {
    						width : 70,
    						height : 70
-  					}
+  					},
+
+  					overlay: {
+    					opacity: 2, 
+    					css: {'background-color': '#000000'} 
+   					}
  				},
 
 			//in case we want to resize images, change the width here...
@@ -75,15 +80,25 @@
 
 				closeClick : true,
 
- 				afterLoad : function() {
-  				this.title = 'Frame ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
-				 }
+				autoSize : false,
+				//fitToView: true,
+				width:900,
+  				height:900,
+  				 titleShow : true,
+
+  //autoResize:false
+
+ 				 afterLoad : function() {
+  			 		this.title = ' Frame ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				  }
 				});
 
 			/*
 			 *  Different effects
 			//  */
 	
+
+
 			// Change title type, overlay closing speed
 			$(".fancybox-effects-a").fancybox({
 				helpers: {
@@ -298,7 +313,7 @@
 				. $name 
 				. '/1.png"> <img width="150" height="100"'. ' src=./'
 				. $name
-				. '/0.png alt ="1" /> <a/>'
+				. '/0.png alt ="1" /> </a>'
 				. ' ' ;
 		}
 
@@ -313,13 +328,52 @@
 			{
 				echo_img_for_slideshow($name, $i);
 			}
+			echo_addimg($name, $i); //get last image and storyboard name
 		}
 
+		function echo_addimg($name, $number)
+		{//" title="test title"
+
+			echo '<a class="storyboard fancybox.iframe" data-fancybox-group="'
+				. $name
+				. '" href="../Paint/paint_app.php?b='
+				. 'Board'
+				. '&f='
+				. '1'
+				. '" </a>'
+				. ' '; 
+			/*
+			echo '<a class="storyboard fancybox.iframe" data-fancybox-group="'
+				. $name
+				. '" href="../Paint/paint_app.php?b='
+				. $name
+				. '&f='
+				. ($number)
+				. '" </a>'
+				. ' '; 
+				*/
+		}
+
+
 		function echo_img_for_slideshow($name, $number)
-		{
+		{//get title/caption using name and number from database
+			//for now
+			// echo '<a class="storyboard" data-fancybox-group="'
+			// 	. $name
+			// 	. '" title="Edit this image! <a href=\'../Paint/paint_app.php?b=Board&f=1\'>Launch editor</a>" href="./'
+			// 	. $name 
+			// 	. '/'
+			// 	. strval($number)
+			// 	. '.png" </a>'
+			// 	. ' ';
+
 			echo '<a class="storyboard" data-fancybox-group="'
 				. $name
-				. '" href="./'
+				. '" title="Edit this image! <a href=\'../Paint/paint_app.php?b='
+				. $name
+				. '&f='
+				. $number
+				. '\'>Launch editor</a>" href="./'
 				. $name 
 				. '/'
 				. strval($number)
@@ -329,5 +383,7 @@
 		}
 
 	?>
+
 </body>
+
 </html>
