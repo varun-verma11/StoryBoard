@@ -90,6 +90,65 @@ function deleteDir($dirPath) {
     rmdir($dirPath);
 }
 
+		function storyboard($name, $npages)
+		{
 
+			heading($name);
+			html_break();
+			paragraph(generate_slideshow($name, $npages));
+		}
 
+		function heading($name)
+		{
+			echo '<h3>' . $name . '</h3>';
+		}
+
+		function paragraph($text)
+		{
+			echo '<p>' . $text . '</p>';
+		}
+
+		function html_break()
+		{
+			echo '<br>';
+		}
+
+		function generate_slideshow($name, $npages)
+		{
+			echo cover_pic($name);
+			echo all_pics($name, $npages);
+		}
+
+		function cover_pic($name)
+		{
+			echo '<a class="storyboard" data-fancybox-group="' 
+				. $name 
+				. '" href="storyboard/' 
+				. $name 
+				. '/0.png"> <img width="150" height="100"'. ' src=storyboard/'
+				. $name
+				. '/0.png alt ="1" /> <a/>' ;
+		}
+
+		function all_pics($name, $num_images)
+		{
+			echo $num_images;
+			for ($i=1; $i<=$num_images; $i++)
+			{
+				echo_img_for_slideshow($name, $i);
+			}
+		}
+
+		function echo_img_for_slideshow($name, $number)
+		{
+			echo '<a class="storyboard" data-fancybox-group="'
+				. $name
+				. '" href="storyboard/'
+				. $name 
+				. '/'
+				. strval($number)
+				. '.png" </a>'
+				. ' ';
+
+		}
 ?>
