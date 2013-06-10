@@ -41,7 +41,8 @@
  				nextClick : true,
  				helpers : {
   					title : {
-   						type : 'outside'
+   						type: 'outside',
+                		position : 'top'
 						    },
   					buttons : {},
   					thumbs : {
