@@ -142,30 +142,30 @@ function all_pics($name, $num_images)
 	{
 		echo_img_for_slideshow($name, $i);
 	}
-	echo_addimg($name, $i); //get last image and storyboard name
+	echo_adding($name, $i); //get last image and storyboard name
 }
 
-function echo_addimg($name, $number)
+function echo_adding($name, $number)
 {//" title="test title"
 
+	// echo '<a class="storyboard fancybox.iframe" data-fancybox-group="'
+	// 	. $name
+	// 	. '" href="paint.php?b='
+	// 	. 'Board'
+	// 	. '&f='
+	// 	. '1'
+	// 	. '" </a>'
+	// 	. ' '; 
+	
 	echo '<a class="storyboard fancybox.iframe" data-fancybox-group="'
 		. $name
-		. '" href="../Paint/paint_app.php?b='
-		. 'Board'
-		. '&f='
-		. '1'
-		. '" </a>'
-		. ' '; 
-	/*
-	echo '<a class="storyboard fancybox.iframe" data-fancybox-group="'
-		. $name
-		. '" href="../Paint/paint_app.php?b='
+		. '" href="paint.php?b='
 		. $name
 		. '&f='
 		. ($number)
 		. '" </a>'
 		. ' '; 
-		*/
+		
 }
 
 
@@ -187,7 +187,7 @@ function echo_img_for_slideshow($name, $number)
 		. $name
 		. '&f='
 		. strval($number)
-		. '\'>Launch editor</a>" href="./storyboard/'
+		. '\' target=\'_blank\'>Launch editor</a>" href="./storyboard/'
 		. $name 
 		. '/'
 		. strval($number)
