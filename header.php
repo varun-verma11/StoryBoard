@@ -10,7 +10,7 @@ include_once('functions.php');
 <title>Story Board</title>
 <!-- Import these just in board.php TODO -->
 
-
+	<link href="favicon.ico" rel="icon" type="image/x-icon" />
 	<!-- Add jQuery library -->
 	<script type="text/javascript" src="./fancybox/lib/jquery-1.9.0.min.js"></script>
 
