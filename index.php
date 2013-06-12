@@ -17,15 +17,39 @@ include_once('header.php');
 
 	$result = pg_query($conn, $query) or die('Database error!');
 
+	$i = 0;
 	while($row = pg_fetch_array($result)) {
 
 		$name = $row['name'];
+
+		echo '<div class=\'post-';
+		if($i%2 == 0) {
+			echo 'left';
+		} else {
+			echo 'right';
+		}
+		echo '\'>';
+
+		echo '<div class=\'posttitle\'> ';
+
+
 		echo '<h2><a href=\'board.php?name=' .
 			 $name . '\'>' . $name . '</a></h2>';
+		echo '</div> '; #Post title close
+			echo '<div class=\'postcontent\'>';
 
+			echo '<div class=\'postimage\'>';
+			echo '<img src=\'storyboard/' . $name . '/0.png\' />';
+			echo '</div>'; #Post image close
+		
 		echo '<p>' . $row['description'] . '</p>';
 
-		echo '<img src=\'storyboard/' . $name . '/0.png\' />';
+		echo '</div>'; #Post content close
+			
+		
+		echo '</div>'; #Post close
+		echo '<br />';
+		$i++;
 	}
 
 ?>

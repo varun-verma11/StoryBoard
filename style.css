@@ -69,6 +69,7 @@ a {
 #menu a {
 
 	color:#FFF;
+	font-weight: bold;
 }
 
 
@@ -143,4 +144,63 @@ input, textarea {
 
 form {
 	margin:0 auto;
+}
+
+.post-left {
+
+	width:600px;
+	display:block;
+	border-bottom: solid thin #727272;
+	padding-bottom: 15px;
+}
+
+.post-left:hover, .post-right:hover {
+
+background: #FCFCFC;
+
+}
+
+.post-right {
+	width:600px;
+	display:block;
+	border-bottom: solid thin #727272;
+	padding-bottom: 15px;
+}
+
+
+.posttitle {
+	text-transform: capitalize;
+
+}
+
+.posttitle a {
+
+	color:#000;
+}
+
+.posttitle a:hover {
+
+	text-decoration: underline;
+}
+
+.postcontent p {
+	margin-left:50px;
+
+}
+
+.postimage {
+
+	float:left;
+	width:100px;
+	box-shadow: 0px 0px 5px #ccc;
+	height:75px;
+	margin-right:7px;
+	
+}
+
+.postimage img {
+	padding:1px;
+   border:1px solid #021a40;
+	width:inherit;
+	height:inherit;
 }
