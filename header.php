@@ -56,31 +56,29 @@ include_once('functions.php');
 	<div id="usermenu">
 		
 		<ul>
-			<b>User Area:</b>
+			<li><b>User Area:</b><br /></li>
+			<li>&nbsp;</li>
 			<li><a href="changepass.php">Change Password</a></li>
 			<li><a href="boards.php">Boards Panel</a></li>
+			<li><a href="logout.php">Logout</a></li>
 		</ul>
 	</div>
 	<?php
 	}
 ?>
 
- <div id="user">
- <div id="avatar"></div>
+ 	<div id="user">
+ <!--<div id="avatar"></div>-->
 <?php
-if(has_cookies()) {
+if(!has_cookies()) {
 	?>
-<a href="logout.php">Logout</a>
-	<?php
-} else {
-?>
 <a href="login.php">Log in</a>
 <?php
 }
 ?>
-</div> <!-- user div -->
+	</div> <!-- user div -->
 </div> <!-- header div -->
-<hr />
+<!-- <hr /> We don't need you anymore -->
 <div id="content">
 
 <?php
