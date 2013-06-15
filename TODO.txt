@@ -10,7 +10,9 @@ Websites issues:
 
 	- Display boards in 2 columns (done)
 	- Design the board.php nicely
-	- Voting system
-	- Random board page & top rated boards page
+	- Random board page (done)
+	- Voting system & Top rated boards page
 	- Fill in the footer
 	- Change the current GUI a bit
+	- Pages for frontpage
+	
