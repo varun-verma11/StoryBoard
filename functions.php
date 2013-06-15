@@ -137,8 +137,9 @@ function get_number_of_images($name)
 
 function all_pics($name, $num_images)
 {
-	for ($i=1; $i<$num_images; $i++)
+	for ($i=1; $i<=$num_images; $i++)
 	{
+		echo strval($i);
 		echo_img_for_slideshow($name, $i);
 	}
 	//echo_last_img_for_slideshow($name, $i);
