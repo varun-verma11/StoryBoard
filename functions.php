@@ -137,11 +137,12 @@ function get_number_of_images($name)
 
 function all_pics($name, $num_images)
 {
-	for ($i=1; $i<=$num_images; $i++)
+	for ($i=1; $i<$num_images; $i++)
 	{
 		echo_img_for_slideshow($name, $i);
 	}
-	echo_adding($name, $i); //get last image and storyboard name
+	//echo_last_img_for_slideshow($name, $i);
+	//echo_adding($name, $i); //get last image and storyboard name
 }
 
 function echo_adding($name, $number)
