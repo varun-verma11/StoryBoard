@@ -116,6 +116,7 @@ function generate_slideshow($name, $npages)
 {
 	echo cover_pic($name);
 	echo all_pics($name, $npages);
+
 }
 
 function cover_pic($name)
@@ -139,6 +140,7 @@ function all_pics($name, $num_images)
 {
 	for ($i=1; $i<$num_images; $i++)
 	{
+		//echo strval($i);
 		echo_img_for_slideshow($name, $i); //last img not shown
 	}
 	echo_last_img_for_slideshow($name, $i);
@@ -210,7 +212,7 @@ function echo_last_img_for_slideshow($name, $number)
 		. $name
 		. '&f='
 		. strval($number)
-		. '\' style="color: #CC0000" target=\'_blank\'>Launch editor</a>" href="./storyboard/'
+		. '\' style=\'color: #CC0000\' target=\'_blank\'>Launch editor</a>" href="./storyboard/'
 		. $name 
 		. '/'
 		. strval($number)
