@@ -15,7 +15,7 @@
 			pg_query($conn, $query) or die('Database error');
 			$npages++;
 			unlink('storyboard/'. $name . '/' . $npages . '.png');
-
+			header('Location: /board.php?name='.$name );
 
 		} else {
 			echo 'Storyboard empty. Cannot delete any more pages!';
@@ -33,6 +33,7 @@
 		addblankPNG($path, $npages);
 		$query = 'UPDATE wa_storyboards SET pages=\'' . $npages . '\' WHERE name=\'' . $name . '\'' ;
 		pg_query($conn, $query) or die('Database error');
+		header('Location: /board.php?name=' . $name );
 
 	} elseif(!isset($_GET['name'])) 
 		#Error page?

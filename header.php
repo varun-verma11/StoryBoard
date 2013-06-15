@@ -49,7 +49,7 @@ include_once('functions.php');
 	<li><a href="register.php">Register</a></li>
 	<?php } ?>
 	<li><a href="#">Top storyboards</a></li>
-	<li><a href="#">Random storyboard</a></li>
+	<li><a href="randomboard.php">Random storyboard</a></li>
 	</ul>
 </div>
 
