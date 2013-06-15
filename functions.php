@@ -124,7 +124,7 @@ function cover_pic($name)
 		. $name 
 		. '" href="./storyboard/' 
 		. $name 
-		. '/1.png"> <img width="150" height="100"'. ' src="./storyboard/'
+		. '/0.png"> <img width="150" height="100"'. ' src="./storyboard/'
 		. $name
 		. '/0.png" alt ="1" /> </a>'
 		. ' ' ;
@@ -139,9 +139,9 @@ function all_pics($name, $num_images)
 {
 	for ($i=1; $i<$num_images; $i++)
 	{
-		echo_img_for_slideshow($name, $i);
+		echo_img_for_slideshow($name, $i); //last img not shown
 	}
-	//echo_last_img_for_slideshow($name, $i);
+	echo_last_img_for_slideshow($name, $i);
 	//echo_adding($name, $i); //get last image and storyboard name
 }
 
@@ -183,11 +183,7 @@ function echo_img_for_slideshow($name, $number)
 
 	echo '<a class="storyboard" data-fancybox-group="'
 		. $name
-		. '" title="Edit this image! <a href=\'./paint.php?b='
-		. $name
-		. '&f='
-		. strval($number)
-		. '\' target=\'_blank\'>Launch editor</a>" href="./storyboard/'
+		. '" href="./storyboard/'
 		. $name 
 		. '/'
 		. strval($number)
@@ -195,4 +191,32 @@ function echo_img_for_slideshow($name, $number)
 		. ' ';
 
 }
+
+function echo_last_img_for_slideshow($name, $number)
+{//get title/caption using name and number from database
+	//for now
+	// echo '<a class="storyboard" data-fancybox-group="'
+	// 	. $name
+	// 	. '" title="Edit this image! <a href=\'../Paint/paint_app.php?b=Board&f=1\'>Launch editor</a>" href="./'
+	// 	. $name 
+	// 	. '/'
+	// 	. strval($number)
+	// 	. '.png" </a>'
+	// 	. ' ';
+
+	echo '<a class="storyboard" data-fancybox-group="'
+		. $name
+		. '" title="Edit this image! <a href=\'./paint.php?b='
+		. $name
+		. '&f='
+		. strval($number)
+		. '\' style="color: #CC0000" target=\'_blank\'>Launch editor</a>" href="./storyboard/'
+		. $name 
+		. '/'
+		. strval($number)
+		. '.png" </a>'
+		. ' ';
+
+}
+
 ?>
