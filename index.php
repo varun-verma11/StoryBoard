@@ -18,12 +18,16 @@ include_once('header.php');
 	$result = pg_query($conn, $query) or die('Database error!');
 
 	$i = 0;
+	$left = false;
 	while($row = pg_fetch_array($result)) {
 
+		$left = $i%2 == 0;
 		$name = $row['name'];
 
+		if($left)
+			echo '<div class=\'postrow\'>';
 		echo '<div class=\'post-';
-		if($i%2 == 0) {
+		if($left) {
 			echo 'left';
 		} else {
 			echo 'right';
@@ -48,9 +52,13 @@ include_once('header.php');
 			
 		
 		echo '</div>'; #Post close
+		if(!$left)
+			echo '</div>';
 		echo '<br />';
 		$i++;
 	}
+	if($left)
+		echo '</div>';
 
 ?>
 

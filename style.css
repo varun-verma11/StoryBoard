@@ -103,7 +103,8 @@ a {
 }
 
 #content {
-	padding:0 15px;	
+	padding:0 15px;
+
 }
 
 #user {
@@ -148,10 +149,11 @@ form {
 
 .post-left {
 
-	width:600px;
-	display:block;
-	border-bottom: solid thin #727272;
+	width:400px;
+/*	border-bottom: solid thin #727272;*/
 	padding-bottom: 15px;
+	display: table-cell;
+
 }
 
 .post-left:hover, .post-right:hover {
@@ -161,10 +163,11 @@ background: #FCFCFC;
 }
 
 .post-right {
-	width:600px;
-	display:block;
-	border-bottom: solid thin #727272;
+	width:400px;
+/*	border-bottom: solid thin #727272;*/
 	padding-bottom: 15px;
+	padding-left:70px;
+	display: table-cell;
 }
 
 
@@ -175,7 +178,7 @@ background: #FCFCFC;
 
 .posttitle a {
 
-	color:#000;
+	color:#4B0808;
 }
 
 .posttitle a:hover {
@@ -194,7 +197,7 @@ background: #FCFCFC;
 	width:100px;
 	box-shadow: 0px 0px 5px #ccc;
 	height:75px;
-	margin-right:7px;
+	margin-right:13px;
 	
 }
 
@@ -203,4 +206,11 @@ background: #FCFCFC;
    border:1px solid #021a40;
 	width:inherit;
 	height:inherit;
+}
+
+.postrow {
+
+	display:table-row;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size: 13.5px;
 }
