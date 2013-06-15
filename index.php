@@ -33,8 +33,8 @@ include_once('header.php');
 		echo '<div class=\'posttitle\'> ';
 
 
-		echo '<h2><a href=\'board.php?name=' .
-			 $name . '\'>' . $name . '</a></h2>';
+		echo '<h2><a href=\"board.php?name=' .
+			 $name . '\">' . $name . '</a></h2>';
 		echo '</div> '; #Post title close
 			echo '<div class=\'postcontent\'>';
 

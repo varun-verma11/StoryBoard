@@ -90,11 +90,11 @@ function deleteDir($dirPath) {
     rmdir($dirPath);
 }
 
-function storyboard($name)
+function storyboard($name,$npages)
 {
 	heading($name);
 	html_break();
-	paragraph(generate_slideshow($name));
+	paragraph(generate_slideshow($name, $npages));
 }
 
 function heading($name)
@@ -112,11 +112,10 @@ function html_break()
 	echo '<br>';
 }
 
-function generate_slideshow($name)
+function generate_slideshow($name, $npages)
 {
-	$num_images = get_number_of_images($name);
 	echo cover_pic($name);
-	echo all_pics($name, $num_images);
+	echo all_pics($name, $npages);
 }
 
 function cover_pic($name)
@@ -125,9 +124,9 @@ function cover_pic($name)
 		. $name 
 		. '" href="./storyboard/' 
 		. $name 
-		. '/1.png"> <img width="150" height="100"'. ' src=./storyboard/'
+		. '/1.png"> <img width="150" height="100"'. ' src="./storyboard/'
 		. $name
-		. '/0.png alt ="1" /> </a>'
+		. '/0.png" alt ="1" /> </a>'
 		. ' ' ;
 }
 
