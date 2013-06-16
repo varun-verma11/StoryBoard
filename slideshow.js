@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 		closeEffect : 'elastic',
 		closeSpeed  : 150,
-		cyclic        :   false,
+		'cyclic'       :   false,
 
 		closeClick : true,
 

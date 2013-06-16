@@ -116,7 +116,6 @@ function generate_slideshow($name, $npages)
 {
 	echo cover_pic($name);
 	echo all_pics($name, $npages);
-
 }
 
 function cover_pic($name)

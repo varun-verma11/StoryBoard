@@ -4,7 +4,7 @@ include_once('functions.php');
  ?>
 <!DOCTYPE HTML>
 <html>
-<body>
+
 <head>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <title>Story Board</title>
@@ -36,6 +36,7 @@ include_once('functions.php');
 		}
 	</style>
 </head>
+<body>
 <div id="wrap">
 
 <div id="header">
