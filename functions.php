@@ -210,7 +210,7 @@ function echo_last_img_for_slideshow($name, $number)
 
 	echo '<a class="storyboard" data-fancybox-group="'
 		. $name
-		. '" title="Edit this image! <a href=\'./paint.php?b='
+		. '" title="Edit this image! <a id=\'last image\' href=\'./paint.php?b='
 		. $name
 		. '&f='
 		. strval($number)

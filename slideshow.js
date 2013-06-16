@@ -224,5 +224,9 @@ $(document).ready(function() {
 		});
 	});
 
+	$(".storyboard").onClose( function() {
+		document.getElementById("last image").href = document.getElementById("last image").href ;
+	});
+
 
 });
