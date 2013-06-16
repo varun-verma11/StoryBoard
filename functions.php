@@ -218,7 +218,7 @@ function echo_last_img_for_slideshow($name, $number)
 		. $name 
 		. '/'
 		. strval($number)
-		. '.png" </a>'
+		. '.png" > </a>'
 		. ' ';
 
 }
