@@ -14,6 +14,7 @@ $(document).ready(function() {
 			closeBtn  : false,
 			arrows    : false,
 			nextClick : true,
+			onClosed  : function() {updateLastImage();},
 			helpers : {
 				title : {
 					type : 'over'
@@ -224,9 +225,12 @@ $(document).ready(function() {
 		});
 	});
 
-	$(".storyboard").onClose( function() {
-		document.getElementById("last image").href = document.getElementById("last image").href ;
+	$(".storyboard").onClosed( function() {
+		document.getElementById("lastImage").href = document.getElementById("lastImage").href ;
 	});
 
+	function updateLastImage() {
+		document.getElementById("lastImage").href = document.getElementById("lastImage").href ;
+	};
 
 });

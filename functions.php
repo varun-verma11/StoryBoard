@@ -145,8 +145,8 @@ function all_pics($name, $num_images)
 		//echo strval($i);
 		echo_img_for_slideshow($name, $i); //last img not shown
 	}
-	echo_last_img_for_slideshow($name, $i);
-	//echo_adding($name, $i); //get last image and storyboard name
+	//echo_last_img_for_slideshow($name, $i);
+	echo_adding($name, $i); //get last image and storyboard name
 }
 
 function echo_adding($name, $number)
@@ -167,7 +167,7 @@ function echo_adding($name, $number)
 		. $name
 		. '&f='
 		. ($number)
-		. '" </a>'
+		. '" > </a>'
 		. ' '; 
 		
 }
@@ -191,7 +191,7 @@ function echo_img_for_slideshow($name, $number)
 		. $name 
 		. '/'
 		. strval($number)
-		. '.png" </a>'
+		. '.png" > </a>'
 		. ' ';
 
 }
@@ -210,7 +210,7 @@ function echo_last_img_for_slideshow($name, $number)
 
 	echo '<a class="storyboard" data-fancybox-group="'
 		. $name
-		. '" title="Edit this image! <a id=\'last image\' href=\'./paint.php?b='
+		. '" title="Edit this image! <a id=\'lastImage\' href=\'./paint.php?b='
 		. $name
 		. '&f='
 		. strval($number)
