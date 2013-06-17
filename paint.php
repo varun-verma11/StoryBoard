@@ -14,7 +14,7 @@
             if (!file_exists($filepath))
             {
                 echo '<meta http-equiv="refresh" content="0; url=./NonExistentFrame.html">';
-            }  else if ($age<10)
+            }  else if ($age<6)
             {
                 echo '<meta http-equiv="refresh" content="0; url=./concurrent_access.html">';
             }
