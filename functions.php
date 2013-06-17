@@ -146,7 +146,7 @@ function all_pics($name, $num_images)
 		echo_img_for_slideshow($name, $i); //last img not shown
 	}
 	echo_last_img_for_slideshow($name, $i);
-	//echo_adding($name, $i); //get last image and storyboard name
+	// echo_adding($name, $i); //get last image and storyboard name
 }
 
 function echo_adding($name, $number)
@@ -167,7 +167,7 @@ function echo_adding($name, $number)
 		. $name
 		. '&f='
 		. ($number)
-		. '" </a>'
+		. '" > </a>'
 		. ' '; 
 		
 }
@@ -208,24 +208,26 @@ function echo_last_img_for_slideshow($name, $number)
 	// 	. '.png" </a>'
 	// 	. ' ';
 
-	echo '<a class="storyboard" data-fancybox-group="'
+	echo '<a class="storyboard" id="lastImage" data-fancybox-group="'
 		. $name
-		. '" title="Edit this image! <a href=\'./paint.php?b='
-		. $name
-		. '&f='
-		. strval($number)
-		. '\' style=\'color: #CC0000\' target=\'_parent\'>Launch editor</a>" href="./storyboard/'
+		. '" title="Edit this image! <a id=\'openEditor\' '
+		. ' href=\'javascript:open_editor();\'' 
+		// . 'b='
+		// . $name
+		// . '&f='
+		// . strval($number)
+		// . '\''
+		. ' style=\'color: #CC0000\' target=\'_parent\' >Launch editor</a>" href="./storyboard/'
 		. $name 
 		. '/'
 		. strval($number)
-		. '.png"> </a>'
-		. ' ';
-
+		. '.png"> </a>';
 }
 
-	function error_page() {
+function error_page() 
+{
 
-		header('Location: error.php');
-	}
+	header('Location: error.php');
+}
 
 ?>

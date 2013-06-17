@@ -52,6 +52,15 @@
 		
 		storyboard($name, $npages);
 
+		echo '<script> function open_editor()'
+			. '{'
+				. ' alert("start");'
+				// . ' document.getElementById("openEditor");'
+				. ' document.getElementById("lastImage").className = "storyboard fancybox.iframe";'
+				. ' document.getElementById("lastImage").href = "paint.php?b=' . $name . '&f=' . $npages . '";'
+				. ' alert("end");'
+			. '}; </script>' ;
+
 		if(has_cookies()) {
 		
 	
