@@ -103,6 +103,7 @@ a {
 }
 
 #content {
+	font-family:Verdana, Geneva, sans-serif;
 	padding:0 15px;
 
 }
@@ -213,4 +214,15 @@ background: #FCFCFC;
 	display:table-row;
 	font-family:Verdana, Geneva, sans-serif;
 	font-size: 13.5px;
+}
+#btitle {
+	color:#411931;
+	font-family: verdana;
+	letter-spacing: 0.1px;
+	text-transform: uppercase;
+}
+
+#description {
+	width:400px;
+	text-align: left;
 }

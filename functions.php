@@ -92,7 +92,7 @@ function deleteDir($dirPath) {
 
 function storyboard($name,$npages)
 {
-	heading($name);
+	#heading($name);
 	html_break();
 	paragraph(generate_slideshow($name, $npages));
 }
@@ -125,7 +125,7 @@ function cover_pic($name)
 		. $name 
 		. '" href="./storyboard/' 
 		. $name 
-		. '/0.png"> <img width="150" height="100"'. ' src="./storyboard/'
+		. '/0.png"> <img width="300" height="200"'. ' src="./storyboard/'
 		. $name
 		. '/0.png" alt ="1" /> </a>'
 		. ' ' ;
@@ -212,13 +212,18 @@ function echo_last_img_for_slideshow($name, $number)
 		. $name
 		. '&f='
 		. strval($number)
-		. '\' style=\'color: #CC0000\' target=\'_blank\'>Launch editor</a>" href="./storyboard/'
+		. '\' style=\'color: #CC0000\' target=\'_parent\'>Launch editor</a>" href="./storyboard/'
 		. $name 
 		. '/'
 		. strval($number)
-		. '.png" </a>'
+		. '.png"> </a>'
 		. ' ';
 
 }
+
+	function error_page() {
+
+		header('Location: error.php');
+	}
 
 ?>

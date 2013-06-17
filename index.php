@@ -62,6 +62,11 @@ include_once('header.php');
 
 ?>
 
+<?php
+	#Pages area:
+
+
+?>
 
 
 <?php

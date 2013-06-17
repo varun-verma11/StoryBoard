@@ -29,8 +29,8 @@ if(isset( $_POST['submitted'] ) ) {
 		$result = pg_query($conn, $query);
 		if($usertable = pg_fetch_array($result)) {
 			echo 'Login succesful';
-			setcookie('username', $username);
-			setcookie('password', $pass);
+			setcookie('username', $username, time()+60*60*24, '/' );
+			setcookie('password', $pass, time()+60*60*24, '/' );
 			header( 'Location: /' ) ;
 		} else {
 			echo 'Unsuccesful login';
