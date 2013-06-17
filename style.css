@@ -226,3 +226,7 @@ background: #FCFCFC;
 	width:400px;
 	text-align: left;
 }
+
+#adminsection li {
+	display: inline;
+}

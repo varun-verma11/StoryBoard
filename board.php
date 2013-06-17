@@ -52,26 +52,27 @@
 		
 		storyboard($name, $npages);
 
+		if(has_cookies()) {
+		
+	
+
+		echo '<div id="adminsection">';
+		echo '<ul>';
+		echo '<li><input type=\'button\' value=\'Add new page\' /></li>';
+		echo '<li><input type=\'button\' value=\'Delete last page\' /></li>';
+		echo '<ul>';
+		echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
+		echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
+
+		}
+		echo '</div>';
 		echo '<div id=\'description\'>';
 		echo $desc;
 		echo '</div>';
 
 
 		echo '</div>';
-		if(has_cookies()) {
-		?>
-		<div id="adminsection">
-			<b>Tools</b>:
-		<?php
-		echo '<input type=\'button\' value=\'Add new page\' />';
-		echo '<input type=\'button\' value=\'Delete last page\' />';
-		echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
-		echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
-
-		?>
-		</div>
-		<?php
-	}
+		
 
 
 
