@@ -57,6 +57,31 @@
 		echo  '</b><br />';
 		storyboard($name, $npages);
 
+		echo '<script> function open_editor()'
+			. '{'
+				. ' var lastImage = document.getElementById("lastImage");' 
+				. ' if (lastImage.className == "storyboard")'
+				. ' {'
+					. '	lastImage.className = "storyboard fancybox.iframe";'
+					. ' lastImage.href = "./paint.php?b='. $name . '&f=' . $npages . '";'
+				. '} else '
+				. '{'
+					. 'lastImage.className = "storyboard";'
+					. 'lastImage.href = "./storyboard/'. $name . '/' . $npages. '.png";'
+				.'}'
+			. '}; </script>' ;
+
+
+		echo '<script> function close_editor()'
+			. '{'
+				. ' alert("start close");'
+				// . ' document.getElementById("openEditor");'
+				. ' document.getElementById("lastImage").className = "storyboard";'
+				. ' document.getElementById("lastImage").href = "./storyboard/' . $name . '/' . $npages . '.png";'
+				. ' alert("end close");'
+				. ' document.getElementById("lastImage").onclick = open_editor();'
+			. '}; </script>' ;
+
 		if(has_cookies()) {
 		
 	

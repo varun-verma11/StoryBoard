@@ -1,11 +1,11 @@
 
 Storyboard script:
-	- Fix the duplicate images at the end (done)
-	- Edit button has to be just on the last frame, coloured in white, with no decoration (done)
-	- Board has to display only 1 blank page at the beginning and continue correctly as the user adds/deletes pages (done)
+	- Fix the duplicate images at the end
+	- Edit button has to be just on the last frame, coloured in white, with no decoration
+	- Board has to display only 1 blank page at the beginning and continue correctly as the user adds/deletes pages
 	- Locking has to work
 	- Private boards
-	- Last immage edit issue
+	- 
 
 Websites issues:
 
@@ -16,6 +16,4 @@ Websites issues:
 	- Fill in the footer
 	- Change the current GUI a bit
 	- Pages for frontpage
-	- Tags
-	- Pages for members
 	

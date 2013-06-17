@@ -225,12 +225,17 @@ $(document).ready(function() {
 		});
 	});
 
-	$(".storyboard").onClosed( function() {
-		document.getElementById("lastImage").href = document.getElementById("lastImage").href ;
-	});
+	// $(".storyboard").onClosed( function() {
+	// 	document.getElementById("lastImage").href = document.getElementById("lastImage").href ;
+	// });
 
-	function updateLastImage() {
-		document.getElementById("lastImage").href = document.getElementById("lastImage").href ;
+	// function updateLastImage() {
+	// 	document.getElementById("lastImage").href = document.getElementById("lastImage").href ;
+	// };
+
+	function open_editor()
+	{
+		print("opening");
 	};
 
 });
