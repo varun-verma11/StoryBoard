@@ -42,14 +42,19 @@
 		$query = 'SELECT * FROM wa_storyboards WHERE name=\'' . $name . '\'';
 		$result = pg_query($conn, $query) or die('Database error');
 
-		echo $npages . '<br />';
 		echo '<div align=\'center\'>';
 		if(!pg_fetch_array($result)) 
 			#Error page again!
 			error_page();
 
 		echo '<h2 id=\'btitle\'>' . $name . '</h2>';
-		
+		echo '<b>';
+		echo '(' . $npages;
+		if($npages == 1)
+			echo ' Page)';
+		else
+			echo ' Pages)';
+		echo  '</b><br />';
 		storyboard($name, $npages);
 
 		if(has_cookies()) {
@@ -57,12 +62,10 @@
 	
 
 		echo '<div id="adminsection">';
-		echo '<ul>';
-		echo '<li><input type=\'button\' value=\'Add new page\' /></li>';
-		echo '<li><input type=\'button\' value=\'Delete last page\' /></li>';
-		echo '<ul>';
-		echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
-		echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
+		echo '<input type=\'button\' value=\'Add new page\' onclick="add_page()" />';
+		echo '<input type=\'button\' value=\'Delete last page\' onclick="delete_page()" />';
+		#echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
+		#echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
 
 		}
 		echo '</div>';

@@ -113,13 +113,30 @@ function html_break()
 }
 
 function generate_slideshow($name, $npages)
-{
-	echo cover_pic($name);
+{	if ($npages !=0) { echo cover_pic($name); }
+	else {
+		echo only_cover_pic($name);
+	}
+
 	if ($npages>0)
 	{
 		echo all_pics($name, $npages);		
 	}
 }
+
+
+function only_cover_pic($name)
+{
+	echo '<a class="storyboard fancybox.iframe" data-fancybox-group="' 
+		. $name 
+		. '" href="paint.php?b=' 
+		. $name . '&f=0">'
+		.  '<img width="300" height="200"'. ' src="./storyboard/'
+		. $name
+		. '/0.png" alt ="1" /> </a>'
+		. ' ' ;
+}
+
 
 function cover_pic($name)
 {
@@ -145,8 +162,8 @@ function all_pics($name, $num_images)
 		//echo strval($i);
 		echo_img_for_slideshow($name, $i); //last img not shown
 	}
-	echo_last_img_for_slideshow($name, $i);
-	//echo_adding($name, $i); //get last image and storyboard name
+	//echo_last_img_for_slideshow($name, $i);
+	echo_adding($name, $i); //get last image and storyboard name
 }
 
 function echo_adding($name, $number)
@@ -167,7 +184,7 @@ function echo_adding($name, $number)
 		. $name
 		. '&f='
 		. ($number)
-		. '" </a>'
+		. '"> </a>'
 		. ' '; 
 		
 }
