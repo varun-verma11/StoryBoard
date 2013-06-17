@@ -66,9 +66,9 @@
 		echo '<input type=\'button\' value=\'Delete last page\' onclick="delete_page()" />';
 		#echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
 		#echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
-
-		}
 		echo '</div>';
+		}
+		
 		echo '<div id=\'description\'>';
 		echo $desc;
 		echo '</div>';
