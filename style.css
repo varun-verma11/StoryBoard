@@ -227,6 +227,12 @@ background: #FCFCFC;
 	text-align: left;
 }
 
-#adminsection li {
+#adminsection input {
+	background:#FFF;
 	display: inline;
+}
+
+#adminsection input:hover {
+	background:#000;
+	color:#FFF;
 }
