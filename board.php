@@ -59,7 +59,6 @@
 
 		echo '<script> function open_editor()'
 			. '{'
-				. ' alert("start open");'
 				. ' var lastImage = document.getElementById("lastImage");' 
 				. ' if (lastImage.className == "storyboard")'
 				. ' {'
@@ -70,7 +69,6 @@
 					. 'lastImage.className = "storyboard";'
 					. 'lastImage.href = "./storyboard/'. $name . '/' . $npages. '.png";'
 				.'}'
-				. ' alert("end open");'
 			. '}; </script>' ;
 
 
