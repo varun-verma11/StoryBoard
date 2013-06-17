@@ -2,12 +2,65 @@
 
 <?php
 
-	if(isset( $_POST['submitted'] ) ) {
+	$tags = array();
+
+	if(isset($_POST['tags'])) {
+		$str = $_POST['tags'];
+		$tok = strtok($str, " ");
+		while($tok !== false) {
+			$tags[] = $tok;
+			$tok = strtok(" ");
+		}
+		$tags = array_unique($tags);
+	}
+
+	if(isset($_POST['submitted_to_edit'])) {
+
+		$name = $_GET['name'];
+		$errors = array();
+		$board_description = $_POST['description'];
+		$privacy = $_POST['privacy'];
+
+		$query = 'SELECT id FROM wa_storyboards WHERE name=\'' . $name . '\'';
+		$result = pg_query($conn, $query) or die('Database error 0');
+		$row = pg_fetch_array($result);
+		$bid = $row[0];
+
+		if(empty($board_description))
+			$errors[] = "Please give a description for your board";
+
+		if(!empty($errors)) {
+			echo '<ul>';
+			foreach($errors as $err)
+				echo '<li>' . $err . '</li>';
+			echo '</ul>';
+		} else {
+
+			$query = 'UPDATE wa_storyboards SET description=\''. $board_description . '\', private='
+					. $privacy
+					. ' WHERE name=\'' . $name .'\'';
+			pg_query($conn, $query) or die('Database error 1');
+
+			$query = 'DELETE FROM wa_tags WHERE bid=' . $bid;
+
+			pg_query($conn, $query) or die('Database error 2');
+
+			foreach($tags as $tag) {
+					$query = 'INSERT INTO wa_tags(tag, bid) VALUES ' . '(\'' . $tag . '\', ' . $bid . ')';
+					#echo '<li>' . $query . '</li>'; 
+					pg_query($conn, $query) or die('Database error 3');
+				}
+
+			echo 'Board updated succesfully!';
+		}
+
+	} elseif(isset( $_POST['submitted'] ) ) {
 
 		$privacy = $_POST['privacy'];
 		$errors = array();
 		$board_name = $_POST['boardname'];
 		$board_description = $_POST['description'];
+
 		if(empty($board_name))
 			$errors[] = "Please enter a board name";
 		else {
@@ -47,6 +100,11 @@
 			
 				$add_boad_owner = 'INSERT INTO wa_ownership (uid, bid) VALUES ' . '(\''. $uid . '\', \'' . $bid . '\');';
 			
+				foreach($tags as $tag) {
+					$query = 'INSERT INTO wa_tags(tag, bid) VALUES ' . '(\'' . $tag . '\', ' . $bid . ')';
+					pg_query($conn, $query) or die('Database error 3');
+				}
+
 				pg_query($conn, $add_boad_owner) or die('Database error');
 			
 
@@ -77,20 +135,68 @@
 
 	}
 
+	$can_edit = $_GET['edit'];
+	$name = '';
+	$desc = '';
+	if($can_edit) {
+		$name = $_GET['name'];
+		$query = 'SELECT description FROM wa_storyboards WHERE name=\'' . $name . '\'';
+		$result = pg_query($conn, $query) or die('Database error');
+		$row = pg_fetch_array($result);
+		$desc = $row[0];
+	}
+?>
+
+<?php 
+	if(!$can_edit) {
 ?>
 
 <form action="boards.php" method="post">
+	<?php } else {}
+		echo '<form action="boards.php?name=' .$name . '" method="post">';
+	?>
+
+<?php if(!$can_edit) { ?>
+<br />
 <h2>Create new board</h2>
-<p>Board Name <input type="text" name="boardname" size="30" maxlength="30" /></p>
-<p>Description (max 160 characters) <textarea name="description" rows="4" cols="50" maxlength="160"></textarea>
+<?php } else { ?>
+<a href="boards.php">Create new board</a>
+
+<h2>Edit this board</h2>
+<?php } ?>
+
+<p>Board Name <?php if(!$can_edit) { ?> 
+	<input type="text" name="boardname" size="30" maxlength="30" />
+	<?php } else { echo '<p><b style="text-transform:capitalize;">' . $name . '</b></p>'; }?> 
+
+</p>
+
+<p>Description (max 160 characters) <textarea name="description" rows="4" cols="50" maxlength="160" ><?php if($can_edit)	echo $desc; ?>
+</textarea>
+<p>Tags (separed by spaces)</p>
+<input type="text" name="tags" size="30"/>
 <p>Privacy 
 	<select name="privacy">
 	<option value="false">Public</option>
 	<option value="true">Private</option>
 	</select>
 </p>
+
+<?php 
+	if(!$can_edit) {
+?>
+
 <input type="hidden" name="submitted" value="1" />
 <p><input type="submit" name="submit" value="Create" class="button" /></p>
+<?php
+
+} else {
+?>
+<input type="hidden" name="submitted_to_edit" value="1" />
+<p><input type="submit" name="submit" value="Update" class="button" /></p>
+<?php
+	}
+?>
 </form>
 <hr />
 <h2>Manage Boards</h2>
@@ -114,7 +220,9 @@ WHERE wa_users.user_id='. $uid . ')';
 	echo '<table border=\'1\'>';
 	while($row = pg_fetch_array($results)) {
 		#HUGE SERURITY RISK:
-		echo '<tr><td>' . $row[0] . '</td><td><a href="/board.php?name='. $row[0] .'">Use Board</a></td><td><a href=\'boards.php?delete='. $row[1] .'\'>Delete Board</a></td></tr>';
+		echo '<tr><td>' . $row[0] . '</td><td><a href="/board.php?name='. $row[0] .'">Use Board</a></td><td><a href=\'boards.php?delete='. $row[1] .'\'>Delete Board</a></td>'
+		.'<td><a href="/boards.php?name='. $row[0] .'&edit=true">Edit Board</a></td>'
+		.	'</tr>';
 	
 
 	}
