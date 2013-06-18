@@ -96,7 +96,8 @@
 		echo '<div id="adminsection">';
 		echo '<input type=\'button\' value=\'Add new page\' onclick="add_page()" />';
 		echo '<input type=\'button\' value=\'Delete last page\' onclick="delete_page()" />';
-		echo '<div class="fb-comments" data-href="http://example.com" data-width="600" data-num-posts="10"></div>'';
+		echo 
+		'<div class="fb-comments" data-href="http://example.com" data-width="600" data-num-posts="10"></div>'
 		#echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
 		#echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
 		echo '</div>';
