@@ -87,50 +87,40 @@
 		}
 
 
-		echo '<script> function open_editor()'
-			. '{' 
-				. ' var lastImage = document.getElementById("lastImage");' 
-				. ' if (lastImage.className == "storyboard")'
-				. ' {'
-					. ' turnedOff = true;'
-					. '	lastImage.className = "storyboard fancybox.iframe";'
-					. ' lastImage.href = "./paint.php?b='. $name . '&f=' . $npages . '";'
-					. ' lastImage.title ="<a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Close Editor</a>";'
-				. '} else '
-				. '{' 
-					. ' turnedOff = false;'
-					. ' lastImage.className = "storyboard";'
-					. ' lastImage.href = "./storyboard/'. $name . '/' . $npages. '.png";'
-					. ' lastImage.title = ' . $title
-				. '}'
-				. '$.fancybox.close();'
-				. 'lastImage.click();'
-			. '}; </script>' ;
-
-		echo '<script> function close_editor()'
-			. '{'
-				. ' alert("start close");'
-				// . ' document.getElementById("openEditor");'
-				. ' document.getElementById("lastImage").className = "storyboard";'
-				. ' document.getElementById("lastImage").href = "./storyboard/' . $name . '/' . $npages . '.png";'
-				. ' alert("end close");'
-				. ' document.getElementById("lastImage").onclick = open_editor();'
-			. '}; </script>' ;
-
-
-
 
 		if(has_cookies() && $has_access) {
-		
+			echo '<script> function open_editor()'
+				. '{' 
+					. ' var lastImage = document.getElementById("lastImage");' 
+					. ' if (lastImage.className == "storyboard")'
+					. ' {'
+						. ' turnedOff = true;'
+						. '	lastImage.className = "storyboard fancybox.iframe";'
+						. ' lastImage.href = "./paint.php?b='. $name . '&f=' . $npages . '";'
+						. ' lastImage.title ="<a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Close Editor</a>";'
+					. '} else '
+					. '{' 
+						. ' turnedOff = false;'
+						. ' lastImage.className = "storyboard";'
+						. ' lastImage.href = "./storyboard/'. $name . '/' . $npages. '.png";'
+						. ' lastImage.title = ' . $title
+					. '}'
+					. '$.fancybox.close();'
+					. 'lastImage.click();'
+				. '}; </script>' ;
+			echo '<div id="adminsection">';
+			echo '<input type=\'button\' value=\'Add new page\' onclick="add_page()" />';
+			echo '<input type=\'button\' value=\'Delete last page\' onclick="delete_page()" />';
+			#echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
+			#echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
+			echo '</div><br />';
+				echo '<div class="fb-comments" data-href="http://129.31.210.128/board.php/name="'. $name .' data-width="600" data-num-posts="3"></div>';
 	
-		echo '<div id="adminsection">';
-		echo '<input type=\'button\' value=\'Add new page\' onclick="add_page()" />';
-		echo '<input type=\'button\' value=\'Delete last page\' onclick="delete_page()" />';
-		#echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
-		#echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
-		echo '</div><br />';
-			echo '<div class="fb-comments" data-href="http://129.31.210.128/board.php/name="'. $name .' data-width="600" data-num-posts="3"></div>';
-	
+		} else {
+			echo '<script>'
+					. ' var lastImage = document.getElementById("lastImage");' 
+					. ' lastImage.title = "" ;'
+				. '</script>';
 		}
 		
 		echo '<div id=\'description\'>';
