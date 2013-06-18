@@ -3,22 +3,21 @@
     $board = $_GET['b'];
     $frame = $_GET['f'];
     $filepath = "./storyboard/" . $board . "/" . $frame . ".png";
-    $age = time()-filemtime($filepath);
 
-    // if (!has_cookies())
-    // {
-    //     echo '<meta http-equiv="refresh" content="0; url=./index.php">';
-    //     echo '<script> alert("Please log in before you can use the paint application."); </script>';
-    // } else if (!file_exists($filepath))
-    // {
-    //     echo '<meta http-equiv="refresh" content="0; url=./index.php">';
-    //     echo '<script> alert("You cannot access the images directly. Please log in first."); </script>';
-    // } else if ($age<6)
-    // {
-    //     echo '<meta http-equiv="refresh" content="0; url=./concurrent_access.html">';
-    //      echo '<script> alert("One of your group member is currently editing this image. Please try and edit later."); </script>';
-    // } else 
-    // {
+    if (!has_cookies())
+    {
+        echo '<meta http-equiv="refresh" content="0; url=./index.php">';
+        echo '<script> alert("Please log in before you can use the paint application."); </script>';
+    } else if (!file_exists($filepath))
+    {
+        echo '<meta http-equiv="refresh" content="0; url=./index.php">';
+        echo '<script> alert("You cannot access the images directly. Please log in first."); </script>';
+    } else if (time()-filemtime($filepath)<6)
+    {
+        echo '<meta http-equiv="refresh" content="0; url=./concurrent_access.html">';
+        echo '<script> alert("One of your group member is currently editing this image. Please try and edit later."); </script>';
+    } else 
+    {
         $fp = "./storyboard/" . $board . "/.lock";
         $file = fopen($fp, 'w');
         fwrite($file, "Lock for the editing of storyboard");
@@ -65,5 +64,5 @@
             . '</body>'
             . '</html>';
 
-    // }
+    }
 ?>
