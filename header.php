@@ -9,7 +9,7 @@ include_once('functions.php');
 <link rel="stylesheet" type="text/css" href="style.css" />
 <title>Story Board</title>
 <!-- Import these just in board.php TODO -->
-
+	<script type="text/javascript"> var turnedOff = false;</script>
 	<link href="favicon.ico" rel="icon" type="image/x-icon" />
 	<!-- Add jQuery library -->
 	<script type="text/javascript" src="./fancybox/lib/jquery-1.9.0.min.js"></script>

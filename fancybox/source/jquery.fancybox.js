@@ -455,7 +455,6 @@
 						});
 
 						set();
-
 						F.trigger('onPlayStart');
 					}
 				};

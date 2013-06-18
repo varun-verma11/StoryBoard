@@ -16,7 +16,6 @@
 (function ($) {
 	//Shortcut for fancyBox object
 	var F = $.fancybox;
-
 	//Add helper object
 	F.helpers.buttons = {
 		defaults : {
@@ -32,6 +31,12 @@
 		beforeLoad: function (opts, obj) {
 			//Remove self if gallery do not have at least two items
 
+			if (turnedOff) {
+				obj.helpers.buttons = false;
+				obj.closeBtn = true;
+
+				return;
+			}
 			if (opts.skipSingle && obj.group.length < 2) {
 				obj.helpers.buttons = false;
 				obj.closeBtn = true;

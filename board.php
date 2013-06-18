@@ -58,22 +58,24 @@
 		storyboard($name, $npages);
 
 		echo '<script> function open_editor()'
-			. '{'
-				. '$.fancybox.close();'
+			. '{' 
 				. ' var lastImage = document.getElementById("lastImage");' 
 				. ' if (lastImage.className == "storyboard")'
 				. ' {'
+					. ' turnedOff = true;'
 					. '	lastImage.className = "storyboard fancybox.iframe";'
 					. ' lastImage.href = "./paint.php?b='. $name . '&f=' . $npages . '";'
+					. ' lastImage.title = "<a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Close Editor</a>";'
 				. '} else '
-				. '{'
-					. 'lastImage.className = "storyboard";'
-					. 'lastImage.href = "./storyboard/'. $name . '/' . $npages. '.png";'
+				. '{' 
+					. ' turnedOff = false;'
+					. ' lastImage.className = "storyboard";'
+					. ' lastImage.href = "./storyboard/'. $name . '/' . $npages. '.png";'
+					. ' lastImage.title = "Edit this image! <a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Launch Editor</a>";'
 				. '}'
-				. ' '
+				. '$.fancybox.close();'
 				. 'lastImage.click();'
 			. '}; </script>' ;
-
 
 		echo '<script> function close_editor()'
 			. '{'
