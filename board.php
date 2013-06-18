@@ -94,7 +94,7 @@
 		echo '</div>';
 
 
-		// if(has_cookies()) {
+		if(has_cookies()) {
 			echo '<div id="adminsection">';
 			echo '<input type=\'button\' value=\'Add new page\' onclick="add_page()" />';
 			echo '<input type=\'button\' value=\'Delete last page\' onclick="delete_page()" />';
@@ -104,7 +104,7 @@
 			echo '</div>';
 			echo '<br />';
 			echo '<div class="fb-comments" data-href="http://129.31.210.128/board.php/name="'. $name .' data-width="600" data-num-posts="3"></div>';
-		// }
+		}
 		
 		echo '</div>';
 		
