@@ -1,11 +1,17 @@
 <?php include_once('header.php'); 
 
 	$name = $_GET['name'];
-	$query = 'SELECT pages, description FROM wa_storyboards WHERE name=\'' . $name . '\'';
+	$query = 'SELECT pages, description, private, id FROM wa_storyboards WHERE name=\'' . $name . '\'';
 	$result = pg_query($conn, $query) or die('Database error');
 	$row = pg_fetch_array($result);
 	$npages = $row[0];
 	$desc = $row[1];
+	$is_private = ($row[2] == "t");
+	$bid = $row[3];
+	$has_access = true; #If it's a public board, anyone has access
+	if($is_private)
+		echo 'GOOD';
+
 	if($_GET['delete']) {
 
 		if($npages>0) {
@@ -55,8 +61,30 @@
 		else
 			echo ' Pages)';
 		echo  '</b><br />';
+
+		if(has_cookies() and $is_private) {
+
+			$query = 'SELECT user_id FROM wa_users WHERE username=\'' . $_COOKIE['username'] . '\'';
+			$result = pg_query($conn, $query) or die('Database error');
+			$row = pg_fetch_array($result);
+			$uid = $row[0];
+
+			$query = 'SELECT uid FROM wa_ownership WHERE bid=\'' . $bid . '\'';
+			$result = pg_query($conn, $query) or die('Database error');
+			$row = pg_fetch_array($result);
+			$oid = $row[0];
+
+			$has_access = ($oid == $uid);
+		}
+
 		storyboard($name, $npages);
 
+		$title = '';
+		if($has_access)
+			echo 'OK';
+		if($has_access) {
+			$title = "\"Edit this image! <a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Launch Editor</a>\";";
+		}
 		echo '<script> function open_editor()'
 			. '{' 
 				. ' var lastImage = document.getElementById("lastImage");' 
@@ -65,13 +93,13 @@
 					. ' turnedOff = true;'
 					. '	lastImage.className = "storyboard fancybox.iframe";'
 					. ' lastImage.href = "./paint.php?b='. $name . '&f=' . $npages . '";'
-					. ' lastImage.title = "<a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Close Editor</a>";'
+					. ' lastImage.title ="<a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Close Editor</a>";'
 				. '} else '
 				. '{' 
 					. ' turnedOff = false;'
 					. ' lastImage.className = "storyboard";'
 					. ' lastImage.href = "./storyboard/'. $name . '/' . $npages. '.png";'
-					. ' lastImage.title = "Edit this image! <a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Launch Editor</a>";'
+					. ' lastImage.title = ' . $title
 				. '}'
 				. '$.fancybox.close();'
 				. 'lastImage.click();'
@@ -87,16 +115,19 @@
 				. ' document.getElementById("lastImage").onclick = open_editor();'
 			. '}; </script>' ;
 
-		if(has_cookies()) {
+
+
+
+		if(has_cookies() && $has_access) {
 		
 	
-
 		echo '<div id="adminsection">';
 		echo '<input type=\'button\' value=\'Add new page\' onclick="add_page()" />';
 		echo '<input type=\'button\' value=\'Delete last page\' onclick="delete_page()" />';
 		#echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
 		#echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
 		echo '</div>';
+	
 		}
 		
 		echo '<div id=\'description\'>';

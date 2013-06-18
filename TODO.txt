@@ -10,10 +10,11 @@ Storyboard script:
 Websites issues:
 
 	- Display boards in 2 columns (done)
-	- Design the board.php nicely
+	- Design the board.php nicely (done)
 	- Random board page (done)
 	- Voting system & Top rated boards page
-	- Fill in the footer
+	- Fill in the footer  (done)
 	- Change the current GUI a bit
-	- Pages for frontpage
+	- Pages for frontpage (done)
+	- Private story boards
 	

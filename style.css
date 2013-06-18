@@ -261,3 +261,7 @@ background: #FCFCFC;
 }
 #footer #tagcloud h2 {
 }
+
+#pagenav {
+	margin:0 auto;
+}
