@@ -114,7 +114,7 @@
 			#echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
 			#echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
 			echo '</div><br />';
-				echo '<div class="fb-comments" data-href="http://129.31.210.128/board.php/name="'. $name .' data-width="600" data-num-posts="3"></div>';
+				echo '<div class="fb-comments" data-href="http://129.31.210.128/board.php/name='. $name .' data-width="600" data-num-posts="3"></div>';
 	
 		} else {
 			echo '<script>'
