@@ -229,11 +229,6 @@ function echo_last_img_for_slideshow($name, $number)
 		. $name
 		. '" title="Edit this image! <a id=\'openEditor\' '
 		. ' href=\'javascript:open_editor();\'' 
-		// . 'b='
-		// . $name
-		// . '&f='
-		// . strval($number)
-		// . '\''
 		. ' style=\'color: #CC0000\' target=\'_parent\' >Launch editor</a>" href="./storyboard/'
 		. $name 
 		. '/'

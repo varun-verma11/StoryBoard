@@ -17,7 +17,7 @@ $(document).ready(function() {
 			onClosed  : function() {updateLastImage();},
 			helpers : {
 				title : {
-					type : 'over'
+					type : 'float'
 				    },
 				buttons : {},
 				thumbs : {

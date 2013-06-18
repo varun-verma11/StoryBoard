@@ -11,4 +11,11 @@ function open_editor()
 		lastImage.className = "storyboard";
 		lastImage.href = " ";
 	}
+
+	var lastImage = document.getElementById("lastImage");
+	if (lastImage.className == "storyboard fancybox.iframe")
+	{
+		lastImage.className = "storyboard";
+		lastImage.href = " ";
+	}
 }
