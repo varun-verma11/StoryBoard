@@ -5,20 +5,24 @@
     $filepath = "./storyboard/" . $board . "/" . $frame . ".png";
     $age = time()-filemtime($filepath);
 
-    if (!has_cookies())
-    {
-        echo '<meta http-equiv="refresh" content="0; url=./index.php">';
-        echo '<script> alert("Please log in before you can use the paint application."); </script>';
-    } else if (!file_exists($filepath))
-    {
-        echo '<meta http-equiv="refresh" content="0; url=./index.php">';
-        echo '<script> alert("You cannot access the images directly. Please log in first."); </script>';
-    } else if ($age<6)
-    {
-        echo '<meta http-equiv="refresh" content="0; url=./concurrent_access.html">';
-         echo '<script> alert("One of your group member is currently editing this image. Please try and edit later."); </script>';
-    } else 
-    {
+    // if (!has_cookies())
+    // {
+    //     echo '<meta http-equiv="refresh" content="0; url=./index.php">';
+    //     echo '<script> alert("Please log in before you can use the paint application."); </script>';
+    // } else if (!file_exists($filepath))
+    // {
+    //     echo '<meta http-equiv="refresh" content="0; url=./index.php">';
+    //     echo '<script> alert("You cannot access the images directly. Please log in first."); </script>';
+    // } else if ($age<6)
+    // {
+    //     echo '<meta http-equiv="refresh" content="0; url=./concurrent_access.html">';
+    //      echo '<script> alert("One of your group member is currently editing this image. Please try and edit later."); </script>';
+    // } else 
+    // {
+        $fp = "./storyboard/" . $board . "/.lock";
+        $file = fopen($fp, 'w');
+        fwrite($file, "Lock for the editing of storyboard");
+        fclose($file);
         echo '<html>'
             . '<head>'
             . '<meta charset="UTF-8">'
@@ -39,6 +43,7 @@
             . '<script src="./SkyBrush/skybrush/js/jquery.more.js"></script>'
             . '<script src="./paint.js"> </script>'
             . '<script> var filepath="' . $filepath . '";'
+                . 'var name="' . $board . '";'
                 . 'var dom = $( ".skybrush" );'
                 . 'var skybrush = new SkyBrush( dom, {'
                     . 'image_location: "./SkyBrush/skybrush/images/skybrush/"'
@@ -49,7 +54,7 @@
                 . 'jQuery(window).bind('
                     . '"beforeunload", '
                     . 'function() { '
-                    . 'saveCanvas();'
+                    . 'endOfEdit();'
                     .   '}'
                 . ');'
                 . 'saveCanvas();'
@@ -60,5 +65,5 @@
             . '</body>'
             . '</html>';
 
-    }
+    // }
 ?>
