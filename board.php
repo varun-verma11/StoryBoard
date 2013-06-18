@@ -59,6 +59,7 @@
 
 		echo '<script> function open_editor()'
 			. '{'
+				. '$.fancybox.close();'
 				. ' var lastImage = document.getElementById("lastImage");' 
 				. ' if (lastImage.className == "storyboard")'
 				. ' {'
@@ -68,7 +69,9 @@
 				. '{'
 					. 'lastImage.className = "storyboard";'
 					. 'lastImage.href = "./storyboard/'. $name . '/' . $npages. '.png";'
-				.'}'
+				. '}'
+				. ' '
+				. 'lastImage.click();'
 			. '}; </script>' ;
 
 
