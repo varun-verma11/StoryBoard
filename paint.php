@@ -37,6 +37,7 @@
             . '<script src="./SkyBrush/skybrush/js/skybrush.js"></script>'
             . '<script src="./SkyBrush/skybrush/js/jquery-1.8.2.min.js"></script>'
             . '<script src="./SkyBrush/skybrush/js/jquery.more.js"></script>'
+            . '<script src="./paint.js"> </script>'
             . '<script> var filepath="' . $filepath . '";'
                 . 'var dom = $( ".skybrush" );'
                 . 'var skybrush = new SkyBrush( dom, {'
@@ -56,7 +57,6 @@
                     . 'window.setInterval(saveCanvas, 5000);'
                 . '});'
             . '</script>'
-            . '<script src="./paint.js"> </script>'
             . '</body>'
             . '</html>';
 
