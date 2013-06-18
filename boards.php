@@ -138,22 +138,25 @@
 	$can_edit = $_GET['edit'];
 	$name = '';
 	$desc = '';
+	$bid = 0;
 	if($can_edit) {
 		$name = $_GET['name'];
-		$query = 'SELECT description FROM wa_storyboards WHERE name=\'' . $name . '\'';
+		$query = 'SELECT description, id FROM wa_storyboards WHERE name=\'' . $name . '\'';
 		$result = pg_query($conn, $query) or die('Database error');
 		$row = pg_fetch_array($result);
 		$desc = $row[0];
+		$bid = $row[1];
 	}
 ?>
 
 <?php 
-	if(!$can_edit) {
+	if(!$can_edit) { 
 ?>
 
 <form action="boards.php" method="post">
-	<?php } else {}
+	<?php } else {
 		echo '<form action="boards.php?name=' .$name . '" method="post">';
+	}
 	?>
 
 <?php if(!$can_edit) { ?>
@@ -174,7 +177,18 @@
 <p>Description (max 160 characters) <textarea name="description" rows="4" cols="50" maxlength="160" ><?php if($can_edit)	echo $desc; ?>
 </textarea>
 <p>Tags (separed by spaces)</p>
-<input type="text" name="tags" size="30"/>
+<input type="text" name="tags" size="30" <?php
+	if($can_edit) {
+		$value = '';
+
+		$query = 'SELECT tag FROM wa_tags WHERE bid=' . $bid;
+		$result = pg_query($conn, $query) or die('Database error');
+		while($row = pg_fetch_array($result)) 
+			$value = $value . $row[0] . ' ';
+		echo 'value=\'' . $value . '\'';
+
+	}
+ ?>/>
 <p>Privacy 
 	<select name="privacy">
 	<option value="false">Public</option>
