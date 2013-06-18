@@ -85,6 +85,8 @@
 		if($has_access) {
 			$title = "\"Edit this image! <a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Launch Editor</a>\";";
 		}
+
+
 		echo '<script> function open_editor()'
 			. '{' 
 				. ' var lastImage = document.getElementById("lastImage");' 
@@ -126,7 +128,8 @@
 		echo '<input type=\'button\' value=\'Delete last page\' onclick="delete_page()" />';
 		#echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
 		#echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
-		echo '</div>';
+		echo '</div><br />';
+			echo '<div class="fb-comments" data-href="http://129.31.210.128/board.php/name="'. $name .' data-width="600" data-num-posts="3"></div>';
 	
 		}
 		
@@ -135,6 +138,8 @@
 		echo '</div>';
 
 
+
+		
 		echo '</div>';
 		
 
