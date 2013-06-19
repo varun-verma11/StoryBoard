@@ -265,3 +265,14 @@ background: #FCFCFC;
 #pagenav {
 	margin:0 auto;
 }
+
+table.bottomBorder { border-collapse:collapse; border-top: none; }
+table.bottomBorder td, table.bottomBorder th { border-bottom:1px dotted black;padding:5px; }
+a {
+	color: #000;
+
+}
+
+a:hover {
+	text-decoration: underline;
+}

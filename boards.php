@@ -231,7 +231,10 @@ ON wa_users.user_id = wa_ownership.uid
 WHERE wa_users.user_id='. $uid . ')';
 	
 	$results = pg_query($conn, $user_boards_query);
-	echo '<table border=\'1\'>';
+	echo '<table  class=\'bottomBorder\'>';
+	?>
+<!--	<tr><th>Name</th><th>Use Board</th><th>Delete Board</th><th>Edit Board</th></tr> -->
+	<?php
 	while($row = pg_fetch_array($results)) {
 		#HUGE SERURITY RISK:
 		echo '<tr><td>' . $row[0] . '</td><td><a href="/board.php?name='. $row[0] .'">Use Board</a></td><td><a href=\'boards.php?delete='. $row[1] .'\'>Delete Board</a></td>'

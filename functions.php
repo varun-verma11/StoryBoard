@@ -127,10 +127,12 @@ function generate_slideshow($name, $npages)
 
 function only_cover_pic($name)
 {
-	echo '<a class="storyboard fancybox.iframe" data-fancybox-group="' 
+	echo '<a id="lastImage" class="storyboard" data-fancybox-group="' 
 		. $name 
-		. '" href="paint.php?b=' 
-		. $name . '&f=0">'
+		. '" href="./storyboard/' 
+		. $name . '/0.png" title="Edit this image! <a id=\'openEditor\' '
+		. ' href=\'javascript:open_editor();\'' 
+		. ' style=\'color: #CC0000\' target=\'_parent\' >Launch editor</a>" >'
 		.  '<img width="300" height="200"'. ' src="./storyboard/'
 		. $name
 		. '/0.png" alt ="1" /> </a>'

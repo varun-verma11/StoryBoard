@@ -1,5 +1,6 @@
 <?php include_once('header.php'); 
 
+	header("Cache-Control: no-store, no-cache, must-revalidate");
 	$name = $_GET['name'];
 	$query = 'SELECT pages, description, private, id FROM wa_storyboards WHERE name=\'' . $name . '\'';
 	$result = pg_query($conn, $query) or die('Database error');
@@ -80,8 +81,8 @@
 		storyboard($name, $npages);
 
 		$title = '';
-		if($has_access)
-			echo 'OK';
+		#if($has_access)
+		#	echo 'OK';
 		if($has_access) {
 			$title = "\"Edit this image! <a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Launch Editor</a>\";";
 		}
@@ -91,7 +92,8 @@
 		if(has_cookies() && $has_access) {
 			echo '<script> function open_editor()'
 				. '{' 
-					. ' var lastImage = document.getElementById("lastImage");' 
+					. ' var lastImage = document.getElementById("lastImage");'
+					. '$.fancybox.close();' 
 					. ' if (lastImage.className == "storyboard")'
 					. ' {'
 						. ' turnedOff = true;'
@@ -105,7 +107,6 @@
 						. ' lastImage.href = "./storyboard/'. $name . '/' . $npages. '.png";'
 						. ' lastImage.title = ' . $title
 					. '}'
-					. '$.fancybox.close();'
 					. 'lastImage.click();'
 				. '}; </script>' ;
 			echo '<div id="adminsection">';

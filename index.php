@@ -4,7 +4,7 @@ include_once('header.php');
 <?php
 
 	$page = 1;
-	$boards_per_pages = 10;
+	$boards_per_pages = 6;
 
 	$query = 'SELECT count(*) FROM wa_storyboards';
 	$result = pg_query($conn, $query);
