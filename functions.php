@@ -133,7 +133,7 @@ function only_cover_pic($name)
 		. $name . '/0.png" title="Edit this image! <a id=\'openEditor\' '
 		. ' href=\'javascript:open_editor();\'' 
 		. ' style=\'color: #CC0000\' target=\'_parent\' >Launch editor</a>" >'
-		.  '<img width="300" height="200"'. ' src="./storyboard/'
+		.  '<img width="300" border="1" class="imgstory" height="200"'. ' src="./storyboard/'
 		. $name
 		. '/0.png" alt ="1" /> </a>'
 		. ' ' ;
@@ -142,11 +142,11 @@ function only_cover_pic($name)
 
 function cover_pic($name)
 {
-	echo '<a class="storyboard" data-fancybox-group="' 
+	echo '<a class="storyboard" border="1" data-fancybox-group="' 
 		. $name 
 		. '" href="./storyboard/' 
 		. $name 
-		. '/0.png"> <img width="300" height="200"'. ' src="./storyboard/'
+		. '/0.png"> <img class="imgstory" border="1" width="300" height="200"'. ' src="./storyboard/'
 		. $name
 		. '/0.png" alt ="1" /> </a>'
 		. ' ' ;

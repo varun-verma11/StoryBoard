@@ -276,3 +276,9 @@ a {
 a:hover {
 	text-decoration: underline;
 }
+
+.imgstory {
+
+	border:1px thin #000;
+	padding:2px;
+}
