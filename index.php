@@ -27,44 +27,38 @@ include_once('header.php');
 	$left = false;
 	while($row = pg_fetch_array($result)) {
 
-		$left = $i%2 == 0;
+		$left = $i%3 == 0;
 		$name = $row['name'];
 
-		if($left)
-			echo '<div class=\'postrow\'>';
-		echo '<div class=\'post-';
 		if($left) {
-			echo 'left';
-		} else {
-			echo 'right';
+			if($i>0)
+				echo '<div>';	
+			echo '<div class=\'row\'>';
 		}
-		echo '\'>';
 
-		echo '<div class=\'posttitle\'> ';
+#	  <div class="row">
+#        <div class="col-md-4 portfolio-item">
+#          <a href="#project-link"><img class="img-responsive" src="http://placehold.it/700x400"></a>
+#          <h3><a href="#project-link">Project Name</a></h3>
+#          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+#        </div>
+#      </div>
 
 
-		echo '<h2><a href=\'board.php?name=' .
-			 $name . '\'>' . $name . '</a></h2>';
+		echo '<div class=\'col-md-4 portfolio-item\'>';
+		echo '<img class="img-responsive" width="300px" height="300px" src=\'storyboard/' 
+		. $name . '/0.png\'>';
+
+		echo '<h3><a href=\'board.php?name=' .
+			 $name . '\'>' . $name . '</a></h3>';
+		
 		echo '</div> '; #Post title close
-			echo '<div class=\'postcontent\'>';
 
-			echo '<div class=\'postimage\'>';
-			echo '<img src=\'storyboard/' . $name . '/0.png\' />';
-			echo '</div>'; #Post image close
 		
-		echo '<p>' . $row['description'] . '</p>';
-
-		echo '</div>'; #Post content close
-			
-		
-		echo '</div>'; #Post close
-		if(!$left)
-			echo '</div>';
-		echo '<br />';
 		$i++;
 	}
-	if($left)
-		echo '</div>';
+	#if(!$left)
+	echo '</div>';
 
 ?>
 
@@ -72,6 +66,7 @@ include_once('header.php');
 ?>
 	<div align="center" id="pagenav">
 		Pages:
+		<ul class="pagination">
 	<?php
 	#Pages area:
 	if($page > 1)
@@ -86,9 +81,10 @@ include_once('header.php');
 
 	}
 	if($page < $pages)
-		echo '<a href=\'index.php?p=' . ($page+1) . '\'> Next Page &gt;&gt; </a>';
+		echo ' <li><a href=\'index.php?p=' . ($page+1) . '\'> Next Page &gt;&gt; </a></li>';
 
 	?>
+		</ul>
 	</div>
 	<?php
 

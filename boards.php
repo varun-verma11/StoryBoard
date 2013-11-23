@@ -134,8 +134,7 @@
 		deleteDir($path);
 
 	}
-
-	$can_edit = $_GET['edit'];
+	$can_edit = isset($_GET['edit']);
 	$name = '';
 	$desc = '';
 	$bid = 0;
@@ -168,16 +167,18 @@
 <h2>Edit this board</h2>
 <?php } ?>
 
-<p>Board Name <?php if(!$can_edit) { ?> 
+<p>Board Name</p> 
+<p><?php if(!$can_edit) { ?> 
 	<input type="text" name="boardname" size="30" maxlength="30" />
 	<?php } else { echo '<p><b style="text-transform:capitalize;">' . $name . '</b></p>'; }?> 
 
 </p>
 
-<p>Description (max 160 characters) <textarea name="description" rows="4" cols="50" maxlength="160" ><?php if($can_edit)	echo $desc; ?>
-</textarea>
+<p>Description (max 160 characters)</p> 
+<p><textarea name="description" rows="4" cols="50" maxlength="160" ><?php if($can_edit)	echo $desc; ?>
+</textarea></p>
 <p>Tags (separed by spaces)</p>
-<input type="text" name="tags" size="30" <?php
+<p><input type="text" name="tags" size="30" <?php
 	if($can_edit) {
 		$value = '';
 
@@ -189,8 +190,9 @@
 
 	}
  ?>/>
-<p>Privacy 
-	<select name="privacy">
+ </p>
+<p>Privacy </p>
+<p>	<select name="privacy">
 	<option value="false">Public</option>
 	<option value="true">Private</option>
 	</select>
@@ -201,13 +203,13 @@
 ?>
 
 <input type="hidden" name="submitted" value="1" />
-<p><input type="submit" name="submit" value="Create" class="button" /></p>
+<p><input type="submit" name="submit" value="Create" class="btn btn-primary" /></p>
 <?php
 
 } else {
 ?>
 <input type="hidden" name="submitted_to_edit" value="1" />
-<p><input type="submit" name="submit" value="Update" class="button" /></p>
+<p><input type="submit" name="submit" value="Update" class="btn btn-primary" /></p>
 <?php
 	}
 ?>
@@ -231,7 +233,7 @@ ON wa_users.user_id = wa_ownership.uid
 WHERE wa_users.user_id='. $uid . ')';
 	
 	$results = pg_query($conn, $user_boards_query);
-	echo '<table  class=\'bottomBorder\'>';
+	echo '<table  class=\'table\'>';
 	?>
 <!--	<tr><th>Name</th><th>Use Board</th><th>Delete Board</th><th>Edit Board</th></tr> -->
 	<?php

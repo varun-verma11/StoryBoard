@@ -55,6 +55,64 @@ if(!empty($errors)) {
 	
 } else {
 ?>
+<!--
+<div class="tab-pane fade" id="create">
+					<form id="tab">
+						<label>Username</label>
+						<input type="text" value="" class="input-xlarge">
+						<label>First Name</label>
+						<input type="text" value="" class="input-xlarge">
+						<label>Last Name</label>
+						<input type="text" value="" class="input-xlarge">
+						<label>Email</label>
+						<input type="text" value="" class="input-xlarge">
+						<label>Address</label>
+						<textarea value="Smith" rows="3" class="input-xlarge">
+						</textarea>
+						
+						<div>
+							<button class="btn btn-primary">Create Account</button>
+						</div>
+</form></div> -->
+
+<h1>Register</h1>
+<form class="form-horizontal" action="register.php" method="post">
+<div class="control-group">
+<label class="control-label" for="Username">User Name</label>
+<div class="controls">
+<input type="text" id="Username" name="username" placeholder="User Name">
+</div>
+</div>
+
+<div class="control-group">
+<label class="control-label" for="Email">E-mail Address</label>
+<div class="controls">
+<input type="text" id="Username" name="email" placeholder="Email">
+</div>
+</div>
+
+
+<div class="control-group">
+<label class="control-label" for="inputPassword">Password</label>
+<div class="controls">
+<input type="password" id="inputPassword" name="password" placeholder="Password">
+</div>
+</div>
+
+
+<div class="control-group">
+<label class="control-label" for="inputPassword2">Re-enter password</label>
+<div class="controls">
+<input type="password" id="inputPassword2" name="password_verify" placeholder="Password">
+</div>
+</div>
+
+<!--<p>User name: <input class="input" type="text" name="username" size="20" maxlength="80" /> </p>
+<p>Password: <input class="input" type="password" name="password" size="20" maxlength="20" /> </p> -->
+<p><input type="submit" class="button" name="submit" value="Login" /></p>
+<input type="hidden" name="submitted" value="1" />
+</form>
+<!--
 <h1>Register</h1>
 <form action="register.php" method="post">
 <p>User name: <input type="text" name="username" size="20" maxlength="80" /> </p>
@@ -64,7 +122,7 @@ if(!empty($errors)) {
 <input type="hidden" name="submitted" value="1" />
 <p><input type="submit" name="submit" value="register" class="button" /></p>
 </form>
-
+-->
 
 <?php
 }

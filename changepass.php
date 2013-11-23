@@ -47,6 +47,7 @@ if(!empty($errors)) {
 }
 } else {
 ?>
+<!--
 <form action="changepass.php" method="post">
 <p>Current password: <input class="input" type="password" name="password" size="20" maxlength="20" /></p>
 <p>New password: <input class="input" type="password" name="pass1" size="20" maxlength="20" /></p>
@@ -54,6 +55,40 @@ if(!empty($errors)) {
 <p><input type="submit" class="button" name="submit" value="Reset" /></p>
 <input type="hidden" name="submitted" value="1" />
 </form>
+-->
+<form class="form-horizontal" action="changepass.php" method="post">
+
+<div class="control-group">
+<label class="control-label" for="inputPassword">Current password</label>
+<div class="controls">
+<input type="password" id="inputPassword" name="password" placeholder="Current password">
+</div>
+</div>
+
+<div class="control-group">
+<label class="control-label" for="inputPassword2">New password</label>
+<div class="controls">
+<input type="password" id="inputPassword2" name="pass1" placeholder="New password">
+</div>
+</div>
+
+<div class="control-group">
+<label class="control-label" for="inputPassword3">Retype password</label>
+<div class="controls">
+<input type="password" id="inputPassword3" name="pass2" placeholder="Retype password">
+</div>
+</div>
+<!--<p>User name: <input class="input" type="text" name="username" size="20" maxlength="80" /> </p>
+<p>Password: <input class="input" type="password" name="password" size="20" maxlength="20" /> </p> -->
+
+<div class="control-group">
+<div class="controls">
+<input type="submit" class="btn" name="submit" value="Reset" />
+</div>
+</div>
+<input type="hidden" name="submitted" value="1" />
+</form>
+
 <?php
 }
 include_once('footer.php');

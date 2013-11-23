@@ -13,7 +13,7 @@
 	#if($is_private)
 	#	echo 'GOOD';
 
-	if($_GET['delete']) {
+	if(isset($_GET['delete'])) {
 
 		if($npages>0) {
 
@@ -28,7 +28,7 @@
 			echo 'Storyboard empty. Cannot delete any more pages!';
 		}
 
-	} elseif($_GET['addpage']) {
+	} elseif(isset($_GET['addpage'])) {
 
 		//$name = $_GET['name'];
 		//$query = 'SELECT pages FROM wa_storyboards WHERE name=\'' . $name . '\'';
@@ -87,7 +87,9 @@
 			$title = "\"Edit this image! <a href=\'javascript:open_editor();\'  style=\'color: #CC0000\' target=\'_parent\' >Launch Editor</a>\";";
 		}
 
-
+		echo '<div id=\'description\'>';
+		echo $desc;
+		echo '</div>';
 
 		if(has_cookies() && $has_access) {
 			echo '<script> function open_editor()'
@@ -110,8 +112,8 @@
 					. 'lastImage.click();'
 				. '}; </script>' ;
 			echo '<div id="adminsection">';
-			echo '<input type=\'button\' value=\'Add new page\' onclick="add_page()" />';
-			echo '<input type=\'button\' value=\'Delete last page\' onclick="delete_page()" />';
+			echo '<input type=\'button\' value=\'Add new page\' class=\'btn btn-default\' onclick="add_page()" />';
+			echo '<input type=\'button\' value=\'Delete last page\' class=\'btn btn-default\' onclick="delete_page()" />';
 			#echo '<a href=\'board.php?name=' . $name . '&addpage=true\'>Add Page</a><br />';
 			#echo '<a href=\'board.php?name=' . $name . '&delete=true\'>Delete</a>';
 			echo '</div><br />';
@@ -124,9 +126,7 @@
 				. '</script>';
 		}
 		
-		echo '<div id=\'description\'>';
-		echo $desc;
-		echo '</div>';
+		
 
 
 

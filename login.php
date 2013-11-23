@@ -42,10 +42,24 @@ if(isset( $_POST['submitted'] ) ) {
 } else {
 ?>
 <h1>Login</h1>
-<form action="login.php" method="post">
-<p>User name: <input class="input" type="text" name="username" size="20" maxlength="80" /> </p>
-<p>Password: <input class="input" type="password" name="password" size="20" maxlength="20" /> </p>
-<p><input type="submit" class="button" name="submit" value="Login" /></p>
+<form class="form-horizontal" action="login.php" method="post">
+<label class="control-label" for="inputUsername">Username</label>
+<div class="controls">
+<input type="text" id="inputUsername" name="username" placeholder="Username">
+</div>
+<div class="control-group">
+<label class="control-label" for="inputPassword">Password</label>
+<div class="controls">
+<input type="password" id="inputPassword" name="password" placeholder="Password">
+</div>
+</div>
+<!--<p>User name: <input class="input" type="text" name="username" size="20" maxlength="80" /> </p>
+<p>Password: <input class="input" type="password" name="password" size="20" maxlength="20" /> </p> -->
+<div class="control-group">
+<div class="controls">
+<input type="submit" class="btn" name="submit" value="Login" />
+</div>
+</div>
 <input type="hidden" name="submitted" value="1" />
 </form>
 
